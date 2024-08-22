@@ -1,44 +1,45 @@
-let box1 = 'Hello';
-let box2; // undefined
+// Преобразование (приведение) типа данных
 
-box2 = 15; // 15
+// Переобразование типа данных - когда значение изменяет тип данных с одного на другой
+// Существует два вида преобразования данных: явное и неявное
 
-let secretWord = 15;
+// Неявное преобразование типов (impicit type conversion)
+let num = 6 - '1';
+// console.log(num);
 
-//console.log(secretWord)
+// Явное преобразование типов (explicit type conversion)
+// (приведение типов)
 
-secretWord = 'worddd';
+let thisIsNumber = Number('45');
 
-// console.log(box2); // Не выполнится из-за ошибки на строке 10
-// ...
+// Boolean автоматически (неявно) приводится к типу Number при арифметических расчетах
+// true -> 1
+// false -> 0
 
-let result1 = 1 + 2; // 3
-// console.log(result1);
-let result2 = 3 - 2; // 1
-// console.log(result2);
-let result3 = 2 * 2; // 4
-// console.log(result3);
-let result4 = 4 / 2; // 2
-// console.log(result4);
+let booleanNumber = true + 1; // 1 + 1 = 2
+// console.log(booleanNumber);
 
-let result5 = 0.1 + 0.2; // 0.3
-// console.log(result5);
+// String 
 
-let notAllowed = 10 / 0;
-// console.log(notAllowed); // Infinity (Бесконечность)
+let thisIsString = String(45); // '45'
+// console.log(thisIsString);
 
-let brrrr = 10 / 'hello world'
-// console.log(brrrrr); // NaN
-// NaN-Not a Number -->> операция, недопустима с точки зрения математики
+let testString = null + ''; // неявное приведение типа к strring
+// console.log(testString);
 
-// "+"
-// складывает числа
-// Склеивать строки (конкатенация)
-let newLine = 'Hello' + 'world'
-// console.log(newLine);
+// Явное приведение лучше за неявное
 
-newLine = 5 + 'hello';
-// console.log(newLine);
+let test = 15 - Number('17');
+// console.log(test);
 
-newLine = '1' + 1;
-console.log(newLine); // 11
+// NaN - Not-a-Number
+let notANumber = 2 * 'Hello'; // приведение типов невозможно -> некорректная математическая операция -> NaN
+// console.log(notANumber);
+
+// () - оператор вызова функции 
+// математические операторы (+, -, *, /)
+// оепратор конкатинации
+
+// оператор typeof - позволяет получить тип данных операнда
+let box = true;
+console.log(typeof box); 
