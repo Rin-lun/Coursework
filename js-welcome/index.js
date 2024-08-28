@@ -1,74 +1,53 @@
-/*
+/* 
+Задача 1
 
-Объявленная функция - Finction Declaration
-
-function имя_фуункции(argument1, argument2) {
-    тело функции
-}
-
-имя_функции(аргумент1, аргумент2);
-
-hoisting - объявление функции поднимается (hoisted) к верхней части кода
-
+Напишите функцию, которая принимает 2 числа и возвращает то, которое больше
 */
 
-greetingUser('James');
-
-function greetingUser(userName) {
-    console.log('Привет, ' + userName);
+function greaterNumber(num1, num2) {
+    if(num1 > num2) {
+        return num1;
+    } else if(num1 < num2) {
+        return num2;
+    } else {
+        return 'Ошибка!';
+    }
 }
 
-greetingUser('Alex');
-
+const resultGeaterNumber = greaterNumber(23, 18);
+console.log(resultGeaterNumber);
 
 /*
+Задача 2
 
-Function Expression - Функциональное выражение
-
-const имя_функции = function(arg1, arg2) {
-    тело функции
-}
-
-имя_функции(аргумент1, аргумент2);
-
+Напишите функцию, которая находит среднее арифметическое из двух чисел.
+Среднее арифметическое значение = (одно число + второе число) / количество чисел
 */
 
-// greet('Test'); Приведёт к ошибке!
-
-const greet = function(userName) {
-    console.log('Hi, ' + userName);
+function averageNumber(number1, number2) {
+    const resultAverageNumber = (Number(number1) + Number(number2)) / 2;
+    return resultAverageNumber;
 }
 
-greet('Kevin');
-
+console.log(averageNumber(45, 43));
 
 /*
+Задача 3
 
-Arrow Function - Стрелочная функция
-
-const имя_функции = (arg1, arg2) => {
-    тело функции
-}
-
-hoisting не происходит!
-
+Напишите функцию, которая принимает одно число и определяет, является ли оно четным
 */
 
-// greetArrow('Test'); Приведёт к ошибке!
-
-const greetArrow = (userName) => {
-    console.log('Hi ' + userName);
+function honestyNumber(number) {
+    if(number % 2 === 0 && number > 0) {
+        console.log(number + ' - чётное число');
+    } else if(number % 2 !== 0 && number > 0) {
+        console.log(number + ' - нечётное число');
+    } else if(number <= 0) {
+        console.log('Попробуйте ввести число больше ' + number);
+    }
+    else {
+        console.log('Произошла ошибка...');
+    }
 }
 
-greetArrow('Stepan');
-
-
-
-// Задача: написать функцию, которая выводит системную дату и время (текущие)
-
-const getDataWithTime = function() {
-    // круглыые скобки - когда параметры нам не нужны
-    // параметры нам не нужны, когда работа функции не зависит от какого-то внешнего значения
-    const dataWithTime = new Date;
-    return dataWithTime;
-}
+const resultHonestyNumber = honestyNumber(6);
