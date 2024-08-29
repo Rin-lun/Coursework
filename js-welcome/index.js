@@ -1,53 +1,60 @@
+const num1 = Number(prompt('Введите первое число: '));
+const num2 = Number(prompt('Введите второе число: '));
+
+// Задача: написать функцию, которая принимает 2 числа и складывает их
+
+function addTwoNumbers(arg1, arg2) {
+    return arg1 + arg2;;
+}
+
+let result = addTwoNumbers(num1, num2);
+console.log(result);
+
+// Область видимости - определение доступности и видимости переменных в определённых частях кода
+
 /* 
-Задача 1
+В JS существует 2 основные области
 
-Напишите функцию, которая принимает 2 числа и возвращает то, которое больше
+1. Глобальная область видимости - глобальная область видимости охватывает весь документ (программу)
 */
 
-function greaterNumber(num1, num2) {
-    if(num1 > num2) {
-        return num1;
-    } else if(num1 < num2) {
-        return num2;
-    } else {
-        return 'Ошибка!';
-    }
+const globalVariable = 10;
+
+function globalFunction() {
+    // тело функции ...
 }
 
-const resultGeaterNumber = greaterNumber(23, 18);
-console.log(resultGeaterNumber);
+console.log(globalVariable); // 10
 
+// 2. Локальная область видимости - опрееделяется блоками кода (фигурными скобками)
+
+function testFunction() {
+    const localVariable = 20; // Локальная переменная testFunction
+
+    if(true) {
+        const innerVariable = 30; // Локальная переменная if
+        console.log(innerVariable); // 30
+        console.log(localVariable); // 20, localVariable находится в глобальной области вдимости по отношению к if
+        console.log(globalVariable); // 10, globalVariable находится в глобальной области вдимости по отношению к if
+    }
+
+    console.log(localVariable); // 20
+    // console.log(innerVariable);  => Ошибка: innerVariable недоступна здесь
+}
+
+testFunction();
+
+// console.log(localVariable); => Ошибка: localVariable недоступна здесь
+
+// 3. Функциональная область видимости  - определяет область видимости, закоторой все переменные доступны всередине функции, независисмо от блоков, в которых они созданы
+// (var)
+
+// Summary
 /*
-Задача 2
+Scope - область видимости
+(это все наши переменнные, объекты и т.д., которые нам доступны)
 
-Напишите функцию, которая находит среднее арифметическое из двух чисел.
-Среднее арифметическое значение = (одно число + второе число) / количество чисел
+Local Scope (локальная область видимости) - это все наши переменные, объкты и т.д. всередине нашой функции
+
+Global Scope (глобальная область видимости) - это все наши переменные, объекты и т.д. с текущего кода
 */
-
-function averageNumber(number1, number2) {
-    const resultAverageNumber = (Number(number1) + Number(number2)) / 2;
-    return resultAverageNumber;
-}
-
-console.log(averageNumber(45, 43));
-
-/*
-Задача 3
-
-Напишите функцию, которая принимает одно число и определяет, является ли оно четным
-*/
-
-function honestyNumber(number) {
-    if(number % 2 === 0 && number > 0) {
-        console.log(number + ' - чётное число');
-    } else if(number % 2 !== 0 && number > 0) {
-        console.log(number + ' - нечётное число');
-    } else if(number <= 0) {
-        console.log('Попробуйте ввести число больше ' + number);
-    }
-    else {
-        console.log('Произошла ошибка...');
-    }
-}
-
-const resultHonestyNumber = honestyNumber(6);
