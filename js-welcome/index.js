@@ -1,65 +1,90 @@
-// Задача: напистаь программу,которая проверяет числа на то, делится ли она на 5, 3, 2
-
-/* const number = Number(prompt('Введите число: '));
-
-if (number % 5 === 0) {
-    console.log(number + ' делится на 5');
-} else if (number % 3 === 0) {
-    console.log(number + ' делится на 3');
-} else if (number % 2 === 0) {
-    console.log(number + ' делится на 2');
-} else {
-    console.log(number + ' нацело не делится не на 5, не на 3, не на 2');
-}
-*/
-
-// switch - способ реализации выбора с несколькими возможных вариантов в зависимости от значения выражения 
-// Конструкция switch используется тогда, когда проверяется одна переменная на разные знаечния 
 
 /*
-Синтаксис
+Задача 2.
 
-switch(выражение - какая-то переменная) {
-    case значение_выражение: делаем что-то одно;
-    case значение2_выражения: делаем что-то другое;
-    case значение3_выражение: делаем ещё что-то другое;
-    default: делаем что-то, если другие значения не подошли
-}
+Сделать калькулятор.
 
+Пользователь последовательно один за другим вводит 
+- Первое число
+- Второе число 
+- Один из вариантов: +, -, *, /
+
+Для каждого математического действия ( +, -, *, /) сделать отдельную функцию
+Весь калькулятор - это отдельная функция, роль которой - спросить у пользователя два числа и действие и вернуть ему результат в качестве alert
 */
 
-// Задача: нам приходит номер месяца, за номером месяца нужно определить пору года
+// Var 1
 
-const monthNumber = 3;
+/*
+const number1 = Number(prompt('Введите первое число:'));
+const number2 = Number(prompt('Введите второе число:'));
+const mathematicalSign = prompt('Введите математический знак из перечисленных: \n +,  -,  *,  /');
 
-switch(monthNumber) {
-    case 1: 
-    case 2:
-    case 12: {
-        console.log('Зима');
-        break;
-    }
-    case 3:
-    case 4:
-    case 5: {
-        console.log('Весна');
-        break;
-    }
-    case 6: 
-    case 7:
-    case 8: {
-        console.log('Лето');
-        break;
-    }
-    case 9:
-    case 10:
-    case 11: {
-        console.log('Осень');
-        break;
-    }
-    default: {
-        console.log('Введи число от 1 до 12');
-        break;
+function calculation(number1, number2, mathematicalSign) {
+    if(mathematicalSign === '+') {
+        return number1 + number2;
+    } else if (mathematicalSign === '-') {
+        return number1 -  number2;
+    } else if (mathematicalSign === '*') {
+        return number1 * number2;
+    } else if (mathematicalSign === '/') {
+        return number1 / number2;
+    } else {
+        return 'Возникла ошибка. Попробуйте ввести корректно.'
     }
 }
 
+alert(calculation(number1, number2, mathematicalSign));
+*/
+
+// Var 2
+
+const operand1 = Number(prompt('Введите первое число'));
+const operand2 = Number(prompt('Введите второе число'));
+const action = prompt('Введите необходимое действие: +, -, *, /');
+
+function calculator(operand1, operand2, action) {
+    let result; // тут будет лежать остаточыий результат, после действий над операндами
+
+    switch(action) {
+        case '+': {
+            result = sum(operand1, operand2);
+            break;
+        }
+        case '-': {
+            result = substract(operand1, operand2);
+            break;
+        }
+        case '*': {
+            result = multy(operand1, operand2);
+            break;
+        }
+        case '/': {
+            result = divide(operand1, operand2);
+            break;
+        }
+        default: {
+            result = 'Произошла ошибка! Введитье правильное действие +, -, *, /';
+        }
+    }
+
+    console.log(result);
+}
+
+calculator(operand1, operand2, action);
+
+function sum(a, b) {
+    return a + b;
+}
+
+function substract(a, b) {
+    return a - b;
+}
+
+function multy(a, b) {
+    return a * b;
+}
+
+function divide(a, b) {
+    return a / b;
+}
