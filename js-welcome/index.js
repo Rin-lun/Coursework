@@ -1,44 +1,40 @@
 /*
-Loops - циклы
 
-while (условие) {
-    код, который выполняется, пока условие = true
-}
+Дан правильный пароль = qwerty1234
 
-Написать в консоль 10 раз цифру 1
-
-
-while(количесвто_консоль_логов < 10) {
-    console.log(1);
-    количество_консоль_логогов++;
-}
+prompt
+Запрашивать пароль через prompt, пока пароль, который вводит пользователь, не совпадёт с тем эталонным пароолем, который лежит в переменной
 
 */
 
-let iterator = 0; // счётчик консоль логов
+let passwordTrue = 'qwerty1234';
+let password = prompt('Введите пароль:');
 
-// Итерация - один проход цикла (круг)
-
-while(iterator < 10) {
-    console.log(1);
-    iterator++;
+while(password !== passwordTrue) {
+    alert('Неправильный пароль. Попробуйте снова.');
+    password = prompt('Введите пароль:');
 }
 
-// Бесконечный цикл
+alert('Добро пожаловать!');
 
-while(true) {
-    console.log('Не верно');
-    break;
-}
 
-// Задача: сделать 10 повторов (итераций) цикла на консоль и вывести в консоль парные значения счётчика
+// variant 2
 
-let i = 0;
+// while(true) {
+//     const userPass = prompt('Введіть свій пароль');
+//     if(userPass === correctPassword) {
+//         break;
+//     }
+// }
 
-while(i < 10) {
-    if(i % 2 === 0) {
-        console.log(i);
-    }
+// variant 3
 
-    i++;
-}
+// let isPasswordCorrect = false;
+
+// while(!isPasswordCorrect) { // isPasswordCorrect === false
+//     const userPass = prompt('Введіть свій пароль');
+
+//     if(userPass === correctPassword) {
+//         isPasswordCorrect = true;
+//     }
+// }
