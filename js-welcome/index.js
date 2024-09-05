@@ -1,36 +1,85 @@
-function calculator(num1, num2, functionLink) {
-    let result = functionLink(num1, num2);
-    return result;
-}
-
-console.log(calculator(5, 5, sum)); // sum - ссылка на функцию
-
-// Используя калькулятор, поднести num1 в степень num2
-console.log(calculator(3, 2, function (a, b) { // callback
-    return a ** b;
-}));
-
-function sum(a, b) {
-    return a + b;
-}
-
-function substract(a, b) {
-    return a - b;
-}
-
-function multy(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    return a / b;
-}
-
 /*
 
-High Order Function (HOF, функция вычшего порядка)
-Функция, которая принимает другую функцию в качестве аргумента
+Разработать алгоритм, который будет отображать режим нашего дня.
 
-Callback - Колбек (функция обратного вызова), - функция, которую мы передали как аргумент при вызове другой функции
+Необходимо разработать ункцию, которая принимает ту или иную пору дня (утро, день, вечер) и выполняет те или иные дествия, которые мы используем в указанную пору дня
 
 */
+
+function todo(timeOfDay) { // HOF
+    // morning - список дел на утро
+    // lunch - список дел на день
+    // evening - список дел на вечер
+
+    switch(timeOfDay) {
+        case 'morning': {
+            brushingTeeth();
+            scincare();
+            breakfast();
+            break;
+        }
+        case 'lunch': {
+            goToOffice();
+            coding();
+            lunch();
+            coding();
+            break; 
+        }
+        case 'evening': {
+            education();
+            coding();
+            goToHome();
+            shower();
+            brushingTeeth();
+            scincare();
+            sleep();
+            break;
+        }
+        default: {
+            console.log('Ошибка, такой поры дня не учтено');
+        }
+    }
+}
+
+
+todo('morning');
+
+function brushingTeeth() {
+    console.log('brushing teeth');
+}
+
+function scincare() {
+    console.log('scincare');
+}
+
+function breakfast() {
+    console.log('breakfast');
+}
+
+function goToOffice() {
+    console.log('go to office');
+}
+
+function coding() {
+    console.log('coding');
+}
+
+function lunch() {
+    console.log('lunch');
+}
+
+function education() {
+    console.log('education');
+}
+
+function goToHome() {
+    console.log('go to home');
+}
+
+function shower() {
+    console.log('shower');
+}
+
+function sleep() {
+    console.log('sleep');
+}
