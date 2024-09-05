@@ -1,85 +1,26 @@
 /*
 
-Разработать алгоритм, который будет отображать режим нашего дня.
-
-Необходимо разработать ункцию, которая принимает ту или иную пору дня (утро, день, вечер) и выполняет те или иные дествия, которые мы используем в указанную пору дня
+Детирминованная функция - функция, при одних и тех же аргументах в вызове возвращает всегда один и тот же результат
 
 */
 
-function todo(timeOfDay) { // HOF
-    // morning - список дел на утро
-    // lunch - список дел на день
-    // evening - список дел на вечер
-
-    switch(timeOfDay) {
-        case 'morning': {
-            brushingTeeth();
-            scincare();
-            breakfast();
-            break;
-        }
-        case 'lunch': {
-            goToOffice();
-            coding();
-            lunch();
-            coding();
-            break; 
-        }
-        case 'evening': {
-            education();
-            coding();
-            goToHome();
-            shower();
-            brushingTeeth();
-            scincare();
-            sleep();
-            break;
-        }
-        default: {
-            console.log('Ошибка, такой поры дня не учтено');
-        }
-    }
+function sum(a, b) { // детермированная функция
+    return a + b;
 }
 
+console.log(sum(2, 2)); 
 
-todo('morning');
+let variable = 5;
 
-function brushingTeeth() {
-    console.log('brushing teeth');
+function addToNumberSomeVariable(number) { // недетермированная функция
+    return number + variable;
 }
 
-function scincare() {
-    console.log('scincare');
-}
+console.log(addToNumberSomeVariable(5));
 
-function breakfast() {
-    console.log('breakfast');
-}
+variable = 20;
 
-function goToOffice() {
-    console.log('go to office');
-}
+console.log(addToNumberSomeVariable(5));
 
-function coding() {
-    console.log('coding');
-}
-
-function lunch() {
-    console.log('lunch');
-}
-
-function education() {
-    console.log('education');
-}
-
-function goToHome() {
-    console.log('go to home');
-}
-
-function shower() {
-    console.log('shower');
-}
-
-function sleep() {
-    console.log('sleep');
-}
+/// Если функция работает только с теми данными, которые в неё приходят - детерминованная
+// Если функция "вылазит на свет", то в таком случае, она может не всегда возвращать один и тот же результат при одних и тех же параметрах - недетерминованная
