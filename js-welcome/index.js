@@ -1,40 +1,17 @@
+// Loops - Циклы
+
 /*
+do-while
 
-Дан правильный пароль = qwerty1234
-
-prompt
-Запрашивать пароль через prompt, пока пароль, который вводит пользователь, не совпадёт с тем эталонным пароолем, который лежит в переменной
+do {
+    тут будет блок кода, который будет циклично выполняться
+} while(условие)
 
 */
 
-let passwordTrue = 'qwerty1234';
-let password = prompt('Введите пароль:');
+const correctPassword = 'qwerty1234';
+let userPass;
 
-while(password !== passwordTrue) {
-    alert('Неправильный пароль. Попробуйте снова.');
-    password = prompt('Введите пароль:');
-}
-
-alert('Добро пожаловать!');
-
-
-// variant 2
-
-// while(true) {
-//     const userPass = prompt('Введіть свій пароль');
-//     if(userPass === correctPassword) {
-//         break;
-//     }
-// }
-
-// variant 3
-
-// let isPasswordCorrect = false;
-
-// while(!isPasswordCorrect) { // isPasswordCorrect === false
-//     const userPass = prompt('Введіть свій пароль');
-
-//     if(userPass === correctPassword) {
-//         isPasswordCorrect = true;
-//     }
-// }
+do {
+    userPass = prompt( 'Введите свой пароль:')
+} while(userPass !== correctPassword);
