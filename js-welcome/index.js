@@ -1,41 +1,40 @@
 /*
 Задача
-Написать функцию, которая принимает 2 числа (диапазон) и выводит на консоль все числа из этого диапазона, которые делятся на 5.
+Написать игру FizzBuzz для 100 чисел.
+
+Игра FizzBuzz - это задача, при которой игрок начинает с 1, а затем это число постепенно инкрементируется. Если число делится на 3, игрок говорит «Fizz». Если число делится на 5, игрок говорит «Buzz». Если число делится и на 3, и на 5, игрок говорит «FizzBuzz». Если число не делится ни на 3, ни на 5, игрок просто называет число
+
+Возможно, более подробно об этой игре описано здесь - https://ru.wikipedia.org/wiki/Fizz_buzz
 */
 
-function rangeNumbersDivisiblebyFive() {
-    let number1 = Number(prompt('Введите первое число диапазона:'));
-    let number2 = Number(prompt('Введите второе число диапазона:'));
-    let result = ''; // Инициализируем пустую строку для хранения результатов
-
-    // Проверка на правильность введнных данных
-    if(number1 > number2) {
-        alert('Ошибка! Попробуйте ввести начальное число не больше конечного.');
-        return;
-    } else if(isNaN(number1) || isNaN(number2)) {
-        alert('Для получениея результата поле не может быть пустым, введите число!');
-        return;
-    } else if(number1 === number2) {
-        alert('Числа не могут быть равны!');
-        return;
-    }
+function FizzBuzz() {
+    let num = Number(prompt('Введите число от 1 до 100:'));
     
-    // Цикл поиска чисел, кратных 5
-    for(let i = number1; i <= number2; i++) {
-        if(i % 5 === 0) {
-            result += i + ' '; // Добавляем числа в строку
-        } 
+    if(num < 1) {
+        alert('Число не должно быть меньше 1.');
+        console.log('Ошибка ввода...');
+        return;
+    } else if(num > 100) {
+        alert('Число не должно быть больше 100.');
+        console.log('Ошибка ввода...');
+        return;
+    } else if(isNaN(num)) {
+        alert('Введите число.');
+        console.log('Ошибка ввода...');
+        return;
     }
 
-    // Проверяем результат
-    if(result !== '') {
-        alert('Числа, кратные 5: \n'  + result)
-        console.log(result);
-    } else {
-        alert('Нет чисел, кратных 5, в этом диапазоне.');
-        console.log('Нет чисел, кратных 5.');
+    for(let i = 1; i <= num; i++) {
+        if(i % 3 === 0 && i % 5 === 0) {
+            console.log('FizzBuzz!');
+        } else if(i % 3 === 0) {
+            console.log('Fizz!'); 
+        } else if(i % 5 === 0) {
+            console.log('Buzz!');
+        } else {
+        console.log(i);
+        }
     }
-    
 }
 
-rangeNumbersDivisiblebyFive();
+FizzBuzz();
