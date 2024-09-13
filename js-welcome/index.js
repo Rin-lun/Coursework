@@ -1,40 +1,48 @@
 /*
-Задача
-Написать игру FizzBuzz для 100 чисел.
 
-Игра FizzBuzz - это задача, при которой игрок начинает с 1, а затем это число постепенно инкрементируется. Если число делится на 3, игрок говорит «Fizz». Если число делится на 5, игрок говорит «Buzz». Если число делится и на 3, и на 5, игрок говорит «FizzBuzz». Если число не делится ни на 3, ни на 5, игрок просто называет число
+Объекты
 
-Возможно, более подробно об этой игре описано здесь - https://ru.wikipedia.org/wiki/Fizz_buzz
+const название_объекта = {
+    ключ: значение
+}
+
+Объекты имеют:
+- своства
+- методы
+
 */
 
-function FizzBuzz() {
-    let num = Number(prompt('Введите число от 1 до 100:'));
-    
-    if(num < 1) {
-        alert('Число не должно быть меньше 1.');
-        console.log('Ошибка ввода...');
-        return;
-    } else if(num > 100) {
-        alert('Число не должно быть больше 100.');
-        console.log('Ошибка ввода...');
-        return;
-    } else if(isNaN(num)) {
-        alert('Введите число.');
-        console.log('Ошибка ввода...');
-        return;
-    }
+const obj = {
+    color: 'red',
+    fontSize: 2
+}
 
-    for(let i = 1; i <= num; i++) {
-        if(i % 3 === 0 && i % 5 === 0) {
-            console.log('FizzBuzz!');
-        } else if(i % 3 === 0) {
-            console.log('Fizz!'); 
-        } else if(i % 5 === 0) {
-            console.log('Buzz!');
-        } else {
-        console.log(i);
-        }
+// ООП - Парадигма программироания, которая позволяет создавать программы с использованием объектов, которые имеют свойства и методы
+
+// Задача: описать объект лампочки
+
+const buld = {
+    ligtness: 200,
+    power: '200W',
+    cap: 'small',
+
+    on: function() {
+        return 'The light on!';
+    },
+    off: function() {
+        return 'The light off';
     }
 }
 
-FizzBuzz();
+console.log(buld.ligtness); 
+console.log(buld.on());
+console.log(buld.off());
+
+
+const dog = {
+    name: 'Tuzik',
+    'favorit food': 'meat'
+}
+
+console.log(dog.name);
+console.log(dog['favorit food']);
