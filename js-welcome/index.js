@@ -1,46 +1,22 @@
-/* Способы создания объекта
+/*
 
-const cat = { // литеральное создание объекта
-
-}
-
-const cat2 = Object(); // Функция-конструктор
-
-const cat3 = new Object(); // Функция-конструктор с оператором new
+Определить у себя объект кота.
+Описать его свойства и несколько методов - бегать, спать, мяукатть.
 
 */
 
 const cat = {
-    name: 'Murzik',
-    color: 'Red',
-    age: 2,
+    name: ' Piro',
+    color: 'white',
+    age: 1,
 
-    eat: function() {
-        return 'I am eating'
+    run: function() {
+        return 'Cat runing';
     },
     sleep: function() {
-        return 'I am sleeping'
+        return 'Cat sleeping';
+    },
+    meow: function() {
+        return 'Cat meow';
     }
-}
-
-console.log(cat.age); 
-
-cat.age = cat.age + 2;
-
-console.log(cat.age); 
-
-cat.sleep = undefined; // плохая практика
-
-delete cat.sleep; // хорошая практтика
-
-// Adding property
-
-// Задача: добавить имя друга Мурзика к объекту Мурзика
-
-cat.friend = 'Tuzik';
-
-cat['favorit food'] = 'fish';
-
-cat.meow = function() {
-    return 'Meow';
 }
