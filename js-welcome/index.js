@@ -1,48 +1,46 @@
-/*
+/* Способы создания объекта
 
-Объекты
+const cat = { // литеральное создание объекта
 
-const название_объекта = {
-    ключ: значение
 }
 
-Объекты имеют:
-- своства
-- методы
+const cat2 = Object(); // Функция-конструктор
+
+const cat3 = new Object(); // Функция-конструктор с оператором new
 
 */
 
-const obj = {
-    color: 'red',
-    fontSize: 2
-}
+const cat = {
+    name: 'Murzik',
+    color: 'Red',
+    age: 2,
 
-// ООП - Парадигма программироания, которая позволяет создавать программы с использованием объектов, которые имеют свойства и методы
-
-// Задача: описать объект лампочки
-
-const buld = {
-    ligtness: 200,
-    power: '200W',
-    cap: 'small',
-
-    on: function() {
-        return 'The light on!';
+    eat: function() {
+        return 'I am eating'
     },
-    off: function() {
-        return 'The light off';
+    sleep: function() {
+        return 'I am sleeping'
     }
 }
 
-console.log(buld.ligtness); 
-console.log(buld.on());
-console.log(buld.off());
+console.log(cat.age); 
 
+cat.age = cat.age + 2;
 
-const dog = {
-    name: 'Tuzik',
-    'favorit food': 'meat'
+console.log(cat.age); 
+
+cat.sleep = undefined; // плохая практика
+
+delete cat.sleep; // хорошая практтика
+
+// Adding property
+
+// Задача: добавить имя друга Мурзика к объекту Мурзика
+
+cat.friend = 'Tuzik';
+
+cat['favorit food'] = 'fish';
+
+cat.meow = function() {
+    return 'Meow';
 }
-
-console.log(dog.name);
-console.log(dog['favorit food']);
