@@ -1,29 +1,32 @@
-/* Задача:
-Всередине alert сделать математический рассчёт: 2 + 2
+/*
+У нас есть функция
+function greetingUser(user) {
+    // ? <<<--- шаблонный ряд
+}
+
+и у нас есть объект
+
+const user = {
+    name: 'John',
+    surname: 'Doe',
+    age: 19
+}
+
+Написать функцию greetingUser  таким образом, чтобы она приветствовала пользователя и говорила, сколько ему лет должно исполниться в следующем году
+
+Пример вызова функции:
+greetingUser(user); // Hey John Doe. You will be 20 next year
+
 */
 
-// alert('2 + 2 = ' + (2 + 2));
+function greetingUser(user) {
+    alert(`Hey, ${user.name} ${user.surname}. You will be ${user.age + 1} next year`);
+}
 
-// Двойные кавычки: "Привет"
-// Одинарные кавычки: 'Привет'
-// Обратные кавычки: `Привет` -->> шаблонная строка
-// Выражения укладываются $(...выражение...)
+const user = {
+    name: 'John',
+    surname: 'Doe',
+    age: 19
+}
 
-// Ряды, которые находятся в обратных кавычках называются шаблонными рядами
-
-const name = 'Вася';
-
-// Задача: создать alert и поприветствовать Васю
-
-// alert('Привет, ' + name + '!');
-// alert(`Привет, ${name}!`); // -->> шаблонная строка
-
-// alert(`результат: ${1 + 2}`);
-
-// Задача: спросить у пользователя два числа и вывести alert
-
-const first = Number(prompt('Enter first number: '));
-const secound = Number(prompt('Enter secound number: '));
-
-// alert(string(first) + ' + ' + String(secound) + ' = ' + String(first + secound)); // 5 + 10 = 15
-alert(`${first} + ${secound} = ${first + secound}`);
+greetingUser(user);
