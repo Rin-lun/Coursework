@@ -1,18 +1,19 @@
 /*
 
-Задача: у нас есть объект с разными версиями приветствий для пользователя
-Вывести пользовавтелю приветствие, в зависимости от значения, которое он ввел
+Задача: у нас есть объект, ключем в котором есть день недели, а значение - планы на этот день
+Принять от пользователя (через промпт) название дня недели и выдать алерт, что запланировано у пользователя на этот день
 
 */
 
-const greets = {
-    15: 'Hi',
-    17: ' Ya, whats up',
-    19: 'Hello',
-    30: 'Good morning'
+const obj = {
+    Mon: 'drive lesson',
+    Tue: 'dantist visit',
+    Wed: 'go to party',
+    Thu: 'hard work',
+    Fri: 'chill',
+    Sat: 'go to park'
 }
 
-const valueFromUser = 19;
+const nameDay = prompt('Enter the name of the day of the week to find out your plans for that day, where: \n Monday - Mon; \n Tuesday - Tue; \n Wednesday - Wed; \n Thusday - Thu; \n Friday - Fri; \n Saturday - Sat');
 
-console.log(greets[valueFromUser]); // Hello
-// greets[19]
+alert(obj[nameDay] ? obj[nameDay] : 'Error happened');
