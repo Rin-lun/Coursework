@@ -1,19 +1,28 @@
 /*
 
-Задача: Написать функцию, которая принимает объект и выводит все значения всех свойств, оформленные *...*
-А ключи - "..."
+Задача: у нас есть объект с зарплатами по всем отделениям.
+Написать функцию, которая возвращает общую сумму, потраченную на зарплату всех оттделов
 
 */
 
-const obj = {
-    key1: 'value1'
+const departamentSalary = {
+    HR: 120000,
+    development: 5500000,
+    PR: 50000,
+    marketing: 120000,
+    asisstant: undefined
 }
 
-// "key1" : *valu1e*
+function totalAmountAllSalaries(departamentSalary) {
+    let result = 0;
 
-function stylingObject(obj) {
-    for(let key in obj) {
-        console.log(`"${key}" : *${obj[key]}*`);
+    for(key in departamentSalary) {
+        if(typeof departamentSalary[key] === 'number') {
+            result += departamentSalary[key];
+        }
     }
+
+    return result;
 }
-stylingObject(obj);
+
+console.log(totalAmountAllSalaries(departamentSalary)); 
