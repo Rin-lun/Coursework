@@ -18,3 +18,4 @@ function sumArray(array) {
 }
 
 console.log(sumArray(array1));
+
