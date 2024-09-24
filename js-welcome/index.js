@@ -1,21 +1,24 @@
 /*
 
-Дан массив [3, 6, 8, 2, 3, 5, 1]
-Написать функцию, которая принимает массив в качестве аргумента и возвращает сумму всех элементов массива
+Задача 3. 
+Написать функцию, которая находит среднее арифметическое всех элементов массива.
+Среднее арифметическое = сумма всех элементов массива / количество элементов массива
+
+[3, 6, 8, 2, 3, 5, 1] //
 
 */
 
 const array1 = [3, 6, 8, 2, 3, 5, 1];
 
-function sumArray(array) {
-    let sum = 0;
+function arithmeticMean(array) {
+    let result = 0;
     
     for(let i = 0; i < array.length; i++) {
-        sum += array[i];
+        result += array[i];
     }
     
-    return sum;
+    return result / array.length;
 }
 
-console.log(sumArray(array1));
+console.log(arithmeticMean(array1));
 
