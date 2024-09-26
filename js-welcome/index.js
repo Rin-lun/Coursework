@@ -1,34 +1,22 @@
-/*
-1. Даны два массива: [1, 2, 3] и [4, 5, 6]. Объедините их в массив: [1, 2, 3, 4, 5, 6].
-2. Дан массив [1, 2, 3]. Сделать из него массив [3, 2, 1].
-3. Дан массив [3, 4, 5]. Добавьте ему в конец элементы 4, 8. 10.
-4. Дан массив ['aaa', 'bbb', 'ccc']. Выведите в консоль последний элемент и удалите его из массива.
-5. Дан массив ['3', 7, 10]. Добавьте ему в начало элементы 2, 8.
-6. Дан массив ['3', 7, 10]. Получите из него строку.
-*/
+// array.slice - используется для создания нового масcива, который содержит только какую-то конкретную часть выходного массива
+// array.slice(start, end);
+// Копирует с индекса M (включительно) до индкекса N (не включительно)
+// arr.slice(M, N);
 
+const arr1 =[1, 2, 3, 4, 5, 6, 7, 8];
+const arr2 = arr1.slice(2, 4);
+console.log(arr2);
 
-// 1
-const arr0 = [1, 2, 3];
-const arr1 = [4, 5, 6];
-console.log(arr0.concat(arr1));
+const users = [{
+    name: 'John',
+    lastName: 'Doe'
+}, {
+    name: 'Jane',
+    lastName: 'Doe'
+}, {
+    name: 'Jack',
+    lastName: 'Dosh'
+}];
 
-// 2
-const arr2 = [1, 2, 3];
-console.log(arr2.reverse());
-
-// 3
-const arr3 = [ 3, 4, 5];
-console.log(arr3.push(4, 8, 10));
-
-// 4
-const arr4 = ['aaa', 'bbb', 'ccc'];
-console.log(arr4.pop());
-
-// 5
-const arr5 = ['3', 7, 10];
-console.log(arr5.unshift(2, 8));
-
-// 6
-const arr6 = ['3', 7, 10];
-console.log(arr6.join(', '));
+const newUsers = users.slice(); // newUsers - поверхностная копия
+const upUsers = newUsers.slice(); // upUsers - поверхностная копия поверхностной копии
