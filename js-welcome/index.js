@@ -1,27 +1,11 @@
-const users = [
-    {
-        name: "John",
-        lastName: "Doe",
-        age: 19,
-        email: "john.doe@gmail.com",
-    },
-    {
-        name: "Jane",
-        lastName: "Doe",
-        age: 22,
-        email: "jane.doe@gmail.com",
-    },
-    {
-        name: "Jackson",
-        lastName: "Doe",
-        age: 55,
-        email: "jackson.doe@gmail.com",
-    },
-];
+/* Задача 2
+Дан массив:
+const array = [2, 44, 11, 234, 8, 2, 4, 1];
+Задача:
+Сделать новый массив, все элементы которого = элементам из старого массива + 100
+*/
 
-// Задача 1
-// увеличить возраст пользователей на 1
+const array = [2, 44, 11, 234, 8, 2, 4, 1];
 
-users.forEach((user) => {
-    console.log(user.age += 1);
-});
+const newArray = array.map((item) => item + 100);
+console.log(newArray);
