@@ -1,11 +1,43 @@
-/* Задача 2
-Дан массив:
-const array = [2, 44, 11, 234, 8, 2, 4, 1];
-Задача:
-Сделать новый массив, все элементы которого = элементам из старого массива + 100
+/*
+Задача 3
+Создать новый массив пользователей, объекты должны быть в таком виде
+{
+    fullname: 'John Doe',
+    email: ....
+}
 */
 
-const array = [2, 44, 11, 234, 8, 2, 4, 1];
+const users = [{
+    name: 'John',
+    lastName: 'Doe',
+    age: 19,
+    email: 'john.doe@gmail.com'
+    }, {
+    name: 'Jane',
+    lastName: 'Doe',
+    age: 22,
+    email: 'jane.doe@gmail.com'
+    }, {
+    name: 'Jackson',
+    lastName: 'Doe',
+    age: 55,
+    email: 'jackson.doe@gmail.com'
+}]
 
-const newArray = array.map((item) => item + 100);
-console.log(newArray);
+// function newUserObject(user) {
+//     return [{
+//         fullname: `${user.name} ${user.lastName}`,
+//         email: user.email
+//     }]
+// }
+
+// const newUsers = users.map(newUserObject);
+
+const newUsers = users.map((user) => {
+    return {
+        fullname: `${user.name} ${user.lastName}`,
+        email: user.email
+    };
+});
+
+console.log(newUsers);
