@@ -1,43 +1,15 @@
-/*
-Задача 3
-Создать новый массив пользователей, объекты должны быть в таком виде
-{
-    fullname: 'John Doe',
-    email: ....
+// console.log(t);
+// console.dir(t);
+
+// Любая JS функция - объект
+// Задача: написать функцию, которая возвращает сумму ЛЮБОГО количества переданных в нее аргументов
+function sum() {
+    const arrayArgs = Array.from(arguments);
+    let sum = 0;
+    for(let i = 0; i < arrayArgs.length; i++) {
+        sum += arrayArgs[i];
+    }
+    return sum;
 }
-*/
 
-const users = [{
-    name: 'John',
-    lastName: 'Doe',
-    age: 19,
-    email: 'john.doe@gmail.com'
-    }, {
-    name: 'Jane',
-    lastName: 'Doe',
-    age: 22,
-    email: 'jane.doe@gmail.com'
-    }, {
-    name: 'Jackson',
-    lastName: 'Doe',
-    age: 55,
-    email: 'jackson.doe@gmail.com'
-}]
-
-// function newUserObject(user) {
-//     return [{
-//         fullname: `${user.name} ${user.lastName}`,
-//         email: user.email
-//     }]
-// }
-
-// const newUsers = users.map(newUserObject);
-
-const newUsers = users.map((user) => {
-    return {
-        fullname: `${user.name} ${user.lastName}`,
-        email: user.email
-    };
-});
-
-console.log(newUsers);
+console.log(sum(2, 2, 2, 2, 2, 100));
