@@ -1,15 +1,13 @@
-// console.log(t);
-// console.dir(t);
+/* 
+Создать новый массив, каждый элемент которого = элемент с старого массива * 2
 
-// Любая JS функция - объект
-// Задача: написать функцию, которая возвращает сумму ЛЮБОГО количества переданных в нее аргументов
-function sum() {
-    const arrayArgs = Array.from(arguments);
-    let sum = 0;
-    for(let i = 0; i < arrayArgs.length; i++) {
-        sum += arrayArgs[i];
-    }
-    return sum;
-}
+*/
 
-console.log(sum(2, 2, 2, 2, 2, 100));
+const oldArray = [1, 2, 3, 4, 5]; 
+
+const newArray = oldArray.map((item) => {
+    return item * 2;
+}).reverse().join(',') // chaning (map -> reverse -> join)
+
+// Нужно взять и изменить порядок элементов в массиве newArray на противоположный
+// Нужно сделать из массива - ряд, розделённый запятыми
