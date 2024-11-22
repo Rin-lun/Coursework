@@ -1,9 +1,14 @@
-/*
-const numbersArray = [5, 4, 6, 8, 3, -2, 9, -57];
-Создать новый массив, в который войдут лишь парные элементы начального массива
-*/
+// array.reduce - используется для обчисления какого-то ОДНОГО значения на основе всех элементов массива
+// reduce - приводит все элементы массива до какого-то одного определённого результирующего значения
+// array.reduce(callback, initialValue)
 
-const numbersArray = [5, 5, 4, 6, 8, 3, -2, 9, -57];
+const numbersArray = [2, 3, 1, 2, 34, 21];
 
-const newNumbersArray = numbersArray.filter((item) => item % 2 === 0 & item > 0);
-console.log(newNumbersArray);
+// Задача: найти сумму numbersArray
+
+function reducer(accumulator, item) {
+    // то, что возвращает reducer - обновлнённый аккумулятор
+    return accumulator + item;
+}
+
+const sum = numbersArray.reduce(reducer, 0); // 0 - начальное значение, с к оторого мы начинаем считать сумму
