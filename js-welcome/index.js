@@ -20,24 +20,15 @@ const dogArray = [{
     age: 1
 }]
 
-// Задача: отсортировать собак за весом на увелечение (в порядкe возростания)
-
-// dogArray.sort((dog1, dog2) => {
-//     if(dog1.weight < dog2.weight) {
-//         return -1;
-//     } else { // dog1.weight > dog2.weight
-//         return 1;
-//     }
-    
-// });
-
 /*
--1 - dog1, dog2
-0 - все на месте
-1 - dog2, dog1
+Задача 1
+Отсортировать собак от старшей к наимладшей
 */
 
 dogArray.sort((dog1, dog2) => {
-    // return dog1.weight - dog2.weight; // в порядке возрастания
-    return dog2.weight - dog1.weight; // в порядке спадания
-});
+    if(dog1.age > dog2.age) {
+        return -1;
+    } else {
+        return 1;
+    }
+}); 
