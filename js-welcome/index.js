@@ -21,14 +21,8 @@ const dogArray = [{
 }]
 
 /*
-Задача 1
-Отсортировать собак от старшей к наимладшей
+Задача 2
+Отфильтровать всех собак, кроме белых
 */
 
-dogArray.sort((dog1, dog2) => {
-    if(dog1.age > dog2.age) {
-        return -1;
-    } else {
-        return 1;
-    }
-}); 
+const newArray = dogArray.filter((item) => item.color === 'black');
