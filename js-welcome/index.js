@@ -1,25 +1,50 @@
-const cat = {
-    name: 'Barsik',
-    color: 'red',
-    age: 1
+function MyArray() {
+    this.length = 0;
 }
 
-const cat2 = {
-    name: 'Murzik',
-    color: 'black',
-    age: 5
-}
-
-const catMethods = { // прототип
-    run: function() {
-        console.log(`${this.name} is runnning!`);
+function MyArrayPrototype() {
+    this.push = function() {
+        for(let i = 0; i < arguments.length; i++) {
+            this[this.length] = arguments[i];
+            this.length++;
+        }
+        return this.length;
     },
-    meow: function() {
-        console.log(`${this.name} said meow!`);
+    this.pop = function() {
+        if(this.length > 0) {
+            // 1. Сохранрить последний элемент
+            const lastItem = this[this.length - 1];
+            // 2. Удалить последний элемент с массива
+            delete this[this.length - 1];
+            // 3. Уменьшить длину массива на 1
+            this.length--;
+            // 4. Вернуть удалённый элемент
+            return lastItem;
+        } else {
+            return undefined;
+        }
+    },
+    this.forEach = function(callback) {
+        for(let i = 0; i < this.length; i++) {
+            callback(this[i], i, this);
+        }
     }
 }
 
-// Как прикрутить catMethods к объекту cat?
+MyArray.prototype = new MyArrayPrototype(); //прототипная ссылочночность
 
-cat.__proto__ = catMethods; // прототипная ссылочность
-cat2.__proto__ = catMethods;
+const arr = new MyArray();
+arr.push(1, 2, 3, 56, 8776);
+arr.pop();
+arr.forEach((item) => {
+    console.log(item ** 2);
+});
+
+// Какая разница между __proto__ и .prototype?
+
+// __proto__ работает только тогда, когда мы литерально создали объект
+{
+    //
+}
+
+// .prototype - когда обхекты создаются с помощью конструктора
