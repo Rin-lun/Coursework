@@ -1,50 +1,45 @@
-function MyArray() {
-    this.length = 0;
+/* Задача 1
+
+Задача: создать функцию-конструктор для лестницы. (ladder)
+Объект имеет свойство:
+currentStair - ступенька, на которой мы сейчас находимся. Изначально = 0
+
+Имеет методы:   <<<--- .prototype
+up() - поднимает на ступеньку выше
+down() - опускает на ступеньку ниже
+showStair() - показывает, на какой ступеньке мы сейчас находимся
+
+*/
+
+function Ladder() {
+    this.currentStair = 0;
 }
 
-function MyArrayPrototype() {
-    this.push = function() {
-        for(let i = 0; i < arguments.length; i++) {
-            this[this.length] = arguments[i];
-            this.length++;
-        }
-        return this.length;
+function LadderMethoods() {
+    this.up = function() {
+        this.currentStair++;
+        return this;
     },
-    this.pop = function() {
-        if(this.length > 0) {
-            // 1. Сохранрить последний элемент
-            const lastItem = this[this.length - 1];
-            // 2. Удалить последний элемент с массива
-            delete this[this.length - 1];
-            // 3. Уменьшить длину массива на 1
-            this.length--;
-            // 4. Вернуть удалённый элемент
-            return lastItem;
+    this.down = function() {
+        if(this.currentStair > 0) {
+            this.currentStair--; 
+            return this;
         } else {
-            return undefined;
-        }
+            return "Вы уже на самой нижней ступеньке.";
+        };
     },
-    this.forEach = function(callback) {
-        for(let i = 0; i < this.length; i++) {
-            callback(this[i], i, this);
-        }
-    }
+    this.showStair = function() {
+        return this.currentStair;
+    };
 }
 
-MyArray.prototype = new MyArrayPrototype(); //прототипная ссылочночность
+Ladder.prototype = new LadderMethoods();
 
-const arr = new MyArray();
-arr.push(1, 2, 3, 56, 8776);
-arr.pop();
-arr.forEach((item) => {
-    console.log(item ** 2);
-});
+const ladder = new Ladder();
+console.log(ladder.up().up().down().showStair());
 
-// Какая разница между __proto__ и .prototype?
-
-// __proto__ работает только тогда, когда мы литерально создали объект
-{
-    //
-}
-
-// .prototype - когда обхекты создаются с помощью конструктора
+/* Задача 2 
+Перепишите методы таким образом, чтобы возможно было использование чейнинга, то есть чтобы можно было объединить вызов методов в цепочку
+const ladder = new Ladder();
+ladder.up().up().up().down().up().showStair()
+*/
