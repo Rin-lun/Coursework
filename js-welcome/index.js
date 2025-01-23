@@ -1,45 +1,36 @@
-/* Задача 1
+'use strict';
+// strict mode
 
-Задача: создать функцию-конструктор для лестницы. (ladder)
-Объект имеет свойство:
-currentStair - ступенька, на которой мы сейчас находимся. Изначально = 0
+console.log(this); // this указывает на глобальный объект Window
 
-Имеет методы:   <<<--- .prototype
-up() - поднимает на ступеньку выше
-down() - опускает на ступеньку ниже
-showStair() - показывает, на какой ступеньке мы сейчас находимся
+// this  в глобальной области видимости ссылается на объект Window
 
-*/
-
-function Ladder() {
-    this.currentStair = 0;
+function test() { // Function Declaration
+    console.log(this); // this указывает на функцию
 }
 
-function LadderMethoods() {
-    this.up = function() {
-        this.currentStair++;
-        return this;
-    },
-    this.down = function() {
-        if(this.currentStair > 0) {
-            this.currentStair--; 
-            return this;
-        } else {
-            return "Вы уже на самой нижней ступеньке.";
-        };
-    },
-    this.showStair = function() {
-        return this.currentStair;
-    };
+test();
+
+// Function Expression
+const test2 = function() {
+    console.log(this); // this указывает на функцию
 }
 
-Ladder.prototype = new LadderMethoods();
+test2();
 
-const ladder = new Ladder();
-console.log(ladder.up().up().down().showStair());
+console.log(this); // this указывает на глобальный объект Window
 
-/* Задача 2 
-Перепишите методы таким образом, чтобы возможно было использование чейнинга, то есть чтобы можно было объединить вызов методов в цепочку
-const ladder = new Ladder();
-ladder.up().up().up().down().up().showStair()
+// Весь код, окруженный фигурными скобками - контекст выполнения
+
+/*
+Strict mode запустил такой механизм, что в Fanction Declaration и Function Expression появляется свой собственный контекст выполения
+Контекстом выполнения становаится сама функция, а не глобальный объект window
 */
+
+// Arrow Function 
+const test3 = () => { 
+    console.log(this); // this указывает на глобальный объект Window
+    // Стрелочная функция не имеет своего собственного контекста выполнения
+}
+
+test3();
