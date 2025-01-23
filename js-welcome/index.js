@@ -34,3 +34,26 @@ const test3 = () => {
 }
 
 test3();
+
+const newspaper = {
+    title: 'News news  news...',
+    articles: [{
+        author: 'John Doe',
+        date: '25-08-2023',
+        text: 'lorem'
+    }, {
+        author: 'Richard Doe',
+        date: '25-08-2023',
+        text: 'lorem'
+    }, {
+        author: 'Sam Doe',
+        date: '23-08-2023',
+        text: 'lorem'}],
+    showArticles: function() {
+        this.articles.forEach((item, index) => {
+            console.log(`${this.title} ${index} - ${item.author}`);
+        })
+    }
+}
+
+newspaper.showArticles();
