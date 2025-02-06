@@ -1,53 +1,21 @@
 'use strict';
 
-// function sum(a, b) {
-//     return a + b;
-// }
+// spread operator
+// spred - распаковать (с англ.)
+// [] -->> .., .., .., ..,
 
-// sum(3, 4); // 7
-// sum (5, 5); // 10
-// sum(1, 2, 3); // 3
+const numbers = [1, 3, 4, 5];
 
-// /* 
-// Задача:
+function sum (a, b, ...restArray) {
+    console.log(restArray);
+    return a + b; 
+}
 
-// В функции sum найти сумму двух элементов, а все остальные элементы, которые передали в функцию снаружи, при вызове - положить в массив
-// */
+console.log(sum(...numbers)); // spreed operator
+// расспаковали все значения массива numbers в вызов функции sum
 
-// // rest operator - оператор остаточных параметров
-// // rest - остаток (с англ.)
-// // .., .., .., .., -->> []
-
-// function sum(a, b, ...arrayOfRestArguments) {
-//     console.log(arrayOfRestArguments);
-//     return a + b;
-// }
-
-// console.log(sum(1, 2, 3, 5, 10, 25)); // 3
-
-// function f(arg1, ...rest, arg2) { // ошибка
-
-// }
-
-// Задача: написать стрелочную функцию, которая сумирует любое количество чисел
-
-// const arrowSum = (...restArrayOfNumbers) => {
-//     let sum = 0;
-
-//     for(let i = 0; i < restArrayOfNumbers.length; i++) {
-//         sum += restArrayOfNumbers[i];
-//     }
-    
-//     return sum;
-// }
-
-// console.log(arrowSum(5, 5, 5));
-
-
-// Задача: написать вариант функции arrowSum с использованием метода reduce
-// При вызове reduce передать ему стрелочный коллбек
-
-// Var 1
+// Как различать rest и spred оператор?
+// Если оператор стоит в аргументах функции, то это rest - он просто берёт и собирает все остатки параметров
 // const arrowSum = (...restArray) => {
 //     const sum = restArray.reduce((accumulator, currentValue) => {
 //         return accumulator + currentValue;
@@ -56,9 +24,13 @@
 //     return sum;
 // }
 
-// console.log(arrowSum(12, 23, 543));
+// Если мы используем оператор на массиве, то это spread - он просто берёт и разбивает массив на много элементов
+// Var 1
+const numbersMath = [2, 3, 5, 6, 4];
+
+Math.min(...numbersMath); // 1
 
 // Var 2
-const arrowSum = (...restArray) => restArray.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+// Задача: сделать массив с названием copyArray в который будет входить все элементы массива numbersArray
 
-console.log(arrowSum(12, 23, 543));
+const copyArray = [...numbersMath];
