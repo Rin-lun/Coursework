@@ -34,3 +34,13 @@ Math.min(...numbersMath); // 1
 // Задача: сделать массив с названием copyArray в который будет входить все элементы массива numbersArray
 
 const copyArray = [...numbersMath];
+
+
+// Задача
+// Нужно склеить эти 2 массива. Нельзя использовать метод concat 
+
+const array1 = [1, 2, 4, 5, 7, 8, 9];
+const array2 = [3412, 43, 21, 1, 7, 3];
+
+const newArray = [...array1, ...array2];
+console.log(newArray);
