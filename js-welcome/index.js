@@ -1,46 +1,34 @@
-'use strict';
+// Вложенные циклы (Double Loop)
 
-// spread operator
-// spred - распаковать (с англ.)
-// [] -->> .., .., .., ..,
+/*
+Вывестти на консоль таблицу умножения от 1 до 5
 
-const numbers = [1, 3, 4, 5];
+1x1 = 1
+1x2 = 2
+...1x5 = 5
 
-function sum (a, b, ...restArray) {
-    console.log(restArray);
-    return a + b; 
+2x1 = 2
+2x2 = 4
+
+...
+
+5x1 = 5
+5x2 = 10
+*/
+
+for(let i = 1; i <= 5; i++) { // 1 - число, для которого мы выводим таблицу умножения
+    for(let j = 1; j <= 5; j++) { // 1*1, 1*2, 1*3, 1*4, 1*5 - числа, на которые мы умножим число с наружнего цикла
+        console.log(`${i} x ${j} = ${i*j}`);
+    }
 }
 
-console.log(sum(...numbers)); // spreed operator
-// расспаковали все значения массива numbers в вызов функции sum
+const numbers = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
-// Как различать rest и spred оператор?
-// Если оператор стоит в аргументах функции, то это rest - он просто берёт и собирает все остатки параметров
-// const arrowSum = (...restArray) => {
-//     const sum = restArray.reduce((accumulator, currentValue) => {
-//         return accumulator + currentValue;
-//     }, 0);
+// Задача: найти сумму элементов массива numbers
 
-//     return sum;
-// }
-
-// Если мы используем оператор на массиве, то это spread - он просто берёт и разбивает массив на много элементов
-// Var 1
-const numbersMath = [2, 3, 5, 6, 4];
-
-Math.min(...numbersMath); // 1
-
-// Var 2
-// Задача: сделать массив с названием copyArray в который будет входить все элементы массива numbersArray
-
-const copyArray = [...numbersMath];
-
-
-// Задача
-// Нужно склеить эти 2 массива. Нельзя использовать метод concat 
-
-const array1 = [1, 2, 4, 5, 7, 8, 9];
-const array2 = [3412, 43, 21, 1, 7, 3];
-
-const newArray = [...array1, ...array2];
-console.log(newArray);
+let sum = 0;
+for(let i = 0; i < numbers.length; i ++) { // наружний цикл контролирует массив, который мы перессмаотриваем
+    for(let j = 0; j <  numbers[i].length; j++) { // внутренний цикл суммирует все элементы текущего просматриваемого вложенного массива
+        sum += numbers[i][j]; // получаем доступ к текущему элементу просматриваемого вложенным массивом
+    }
+}
