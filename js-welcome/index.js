@@ -1,57 +1,29 @@
 /*
-Задача 1
+Задача: Фильтрация нецензурных слов
+Напиши функцию filterBadWords(str), которая заменяет запрещённые слова в строке на "***".  
+Запрещённые слова: "xxx", "viagra", "badword".
 
-Написать функцию, которая возвращает true, если переданный ряд содержит слова 'xxx' или 'viagra'
-Если запрещённых слов в ряде нет - возвращает false
-chekSpam('bue ViAgRa now'); // true
-chekSpam('free xxxxxxx'); // true
-chekSpam('innocert rabbit'); // false
+Примеры работы:
 
-*/
+console.log(filterBadWords("Buy ViAgRa now!"));   // "Buy *** now!"
+console.log(filterBadWords("Free xxxxxxx pills")); // "Free *** pills"
+console.log(filterBadWords("This is a badword!")); // "This is a ***!"
+console.log(filterBadWords("Clean text here."));  // "Clean text here."
 
-function bannedWordSearch (str) {
-    str = str.toLowerCase();
-
-    if(!str.includes('xxx') && !str.includes('viagra')) {
-        return false;
-    } else {
-        return true;
-    }
-
-}
-
-let str1 = 'bue ViAgRa now';
-let str2 = 'free xxxxxxx';
-let str3 = 'innocert rabbit';
-
-// console.log(bannedWordSearch(str1));
-// console.log(bannedWordSearch(str2));
-// console.log(bannedWordSearch(str3));
-
-
-/*
-Задача 2
-
-Написать функцию, которая проверяет, есть ли переданный ряд - палиндромом, не смотря на регистр
-Палиндром - это когда ряд с обоих сторон читается одинаково
-
-Anna - палиндром
-Mama - не палиндром
-Namman - палиндром 
+**Подсказки:**
+- Используй .replaceAll() или .replace() + регулярные выражения.
+- Преобразуй строку в нижний регистр перед проверкой.
+- Запрещённые слова могут быть в любом регистре (ViAgRa, XxX, BADword).
 
 */
 
-function checkPalindrome (string) {
-    let stringToLowerCaseAll = string.toLowerCase()
-    let stringNew = stringToLowerCaseAll.split('').reverse().join('');
-
-    return `${string} - ${stringToLowerCaseAll === stringNew ? 'палиндром' : 'не палиндром'}`;
+function filterBadWords(str) {
+    return str.replace(/xxx+/gi, '***')
+              .replace(/v+i+a+g+r+a+/gi, '***')
+              .replace(/b+a+d+w+o+r+d+/gi, '***');
 }
 
-let string1 = 'Anna';
-let string2 = 'Mama';
-let string3 = 'Namman';
-
-console.log(checkPalindrome(string1));
-console.log(checkPalindrome(string2));
-console.log(checkPalindrome(string3));
+console.log(filterBadWords("Buy ViAgRa now! Viagra is good!"));   
+console.log(filterBadWords("Free xxxxxxx pills")); 
+console.log(filterBadWords("This is a badword!")); 
+console.log(filterBadWords("Clean text here.")); 
