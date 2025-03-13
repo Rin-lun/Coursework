@@ -1,36 +1,54 @@
-/*
+const MIN_ZIP = 8000;
+const WORK_DAYS = 21;
+const MIN_RATE = MIN_ZIP / WORK_DAYS;
 
-Класс авто
-Класс топливо
+class Worker {
+    constructor(name, lastName, dailyRate = MIN_RATE, workingDaysInMonth = WORK_DAYS) {
+        if(name === '' || lastName === '') {
+            throw new Error('Name and lastName must be a valid');
+        }
 
-Задача: посчитать общий вес авто (вес авто + вес топлива)
-
-*/
-
-class Fuel {
-    constructor(volume, density) {
-        this.volume = volume;
-        this.density = density;
-    }
-
-    getWeight() {
-        return this.volume * this.density;
-    }
-}
-
-const benzin = new Fuel(50, 0.9);
-
-class Auto {
-    constructor(name, ownWeight, fuel) {
         this.name = name;
-        this.onWeight = ownWeight;
-        this.fuel = fuel;
+        this.lastName = lastName;
+
+        if(typeof dailyRate !== 'number' || typeof workingDaysInMonth !== 'number') {
+            throw new TypeError('Rate and days must be a number');
+        }
+
+        if(dailyRate < 0) {
+            throw new RangeError('Rate must be a positive number');
+        }
+
+        this._dailyRate  = Number(dailyRate.toFixed(2));
+
+        if(workingDaysInMonth < 0 || workingDaysInMonth > 31) {
+            throw new RangeError('Days must be in 0 to 31')
+        }
+
+        this.workingDaysInMonth = workingDaysInMonth;
     }
 
-    // Метод, который обчисляет полный вес авто: его собственный вес ownWeight + вес топлива
-    getFullWeight() {
-        return this.onWeight + this.fuel.getWeight()
+    getRate() {
+        return this._dailyRate;
+    }
+
+    setRate(value) {
+        if(typeof value !== 'number') {
+            throw new TypeError('Rate must be a number');
+        }
+
+        if(value < 0) {
+            throw new RangeError('Rate must be a positive number');
+        }
+
+        this._dailyRate = value;
+    }
+
+    checkSalaryEmployee() {
+        console.log(`${this.name} ${this.lastName} - ${this._dailyRate  * this.workingDaysInMonth}`);
     }
 }
 
-const auto1 = new Auto('BMW', 4000, benzin);
+const worker1 = new Worker('Gon', 'Slow', 1000, 21);
+const worker2 = new Worker('Savanna', 'Loe');
+worker1.checkSalaryEmployee(); 
