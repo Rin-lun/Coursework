@@ -1,21 +1,36 @@
 /*
 
-Создать функцию, которая принимает число и выводит его в консоль.
-Если пользователь ввёл текст - переобразовать его в число и вывести в консоль.
+Класс авто
+Класс топливо
+
+Задача: посчитать общий вес авто (вес авто + вес топлива)
 
 */
 
+class Fuel {
+    constructor(volume, density) {
+        this.volume = volume;
+        this.density = density;
+    }
 
-function userNumber (num) {
-    if(isNaN(num)) {
-        let result = 0;
-        for(let i = 0; i < num.length; i++) {
-            result += num.charCodeAt(i);
-        }
-        console.log(`Так как вы ввели не число, ваш текст был переобразован в число исходя из суммы номеров юникода каждого введённого символа: ${result}`);
-    } else {
-        console.log(`Веше число: ${num}`);
+    getWeight() {
+        return this.volume * this.density;
     }
 }
 
-userNumber('df1!%;:'); 
+const benzin = new Fuel(50, 0.9);
+
+class Auto {
+    constructor(name, ownWeight, fuel) {
+        this.name = name;
+        this.onWeight = ownWeight;
+        this.fuel = fuel;
+    }
+
+    // Метод, который обчисляет полный вес авто: его собственный вес ownWeight + вес топлива
+    getFullWeight() {
+        return this.onWeight + this.fuel.getWeight()
+    }
+}
+
+const auto1 = new Auto('BMW', 4000, benzin);
