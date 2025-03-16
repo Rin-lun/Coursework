@@ -1,103 +1,31 @@
-const MIN_ZIP = 8000;
-const WORK_DAYS = 21;
-const MIN_RATE = MIN_ZIP / WORK_DAYS;
-
-class Worker {
-    constructor(name, lastName, dailyRate = MIN_RATE, workingDaysInMonth = WORK_DAYS) {
-        this.name = name;
-        this.lastName = lastName;
-        this.dailyRate  = Number(dailyRate.toFixed(2));
-        this.workingDaysInMonth = workingDaysInMonth;
+class Test {
+    constructor(value1, value2) {
+        this.key1 = value1;
+        this.key2 = value2;
     }
 
-    /*
-    Сеттер - метод для установки значения
-    Геттер - метод для получения значения 
-    */
-
-// name
-    set name(newValue) {
-        if(typeof newValue !== 'string') {
-            throw new TypeError('name must be a string');
-        }
-        if(newValue === '') {
-            throw new Error('name must be a valid');
-        }
-
-        this._name = newValue;
+    method()  {
+        // тело метода
     }
 
-    get name() {
-        return this._name;
-    }
-
-// lastName
-    set lastName(newValue) {
-        if(typeof newValue !== 'string') {
-            throw new TypeError('lastName be a string');
-        }
-        if(newValue === '') {
-            throw new Error('lastName must be valid');
-        }
-
-        this._lastName = newValue;
-    }
-
-    get lastName() {
-        return this._lastName;
-    }
-
-// dailyRate
-    set dailyRate(newValue) { // название сеттера - название приватного поля БЕЗ знака нижнего подчёркивания
-        if(newValue < 0) {
-            throw new RangeError('dailyRate must be a positive number');
-        }
-        if(typeof newValue !== 'number') {
-            throw new TypeError('dailyRate must be a number');
-        }
-
-        // НО, в середине сеттера мы работаем с приватным полем
-        this._dailyRate = newValue;
-    }
-
-    get dailyRate() { // название геттера - название приватного поля БЕЗ знака нижнего подчёркивания
-        // НО, в середине геттера мы работаем с приватным поле
-        return this._dailyRate;
-    }
-
-// workingDaysInMonth
-    set workingDaysInMonth(newValue) {
-        if(newValue < 0 || newValue > 31) {
-            throw new RangeError('workingDaysInMonth must be in 0 to 31');
-        }
-        if(typeof newValue !== 'number') {
-            throw new TypeError('workingDaysInMonth must be a number');
-        }
-
-        this._workingDaysInMonth = newValue;
-    }
-
-    get workingDaysInMonth() {
-        return this._workingDaysInMonth;
-    }
-
-    checkSalaryEmployee() {
-        console.log(`${this.name} ${this.lastName} - ${this.dailyRate * this.workingDaysInMonth}`);
+    // Вариант 2 для оглошения статического метода - более распространённый
+    static myStaticMethod(parameter) {
+        // тело функции - что-то мы делаем
+        console.log(parameter);
     }
 }
 
-const worker1 = new Worker('Gon', 'Slow', 1000, 21);
-const worker2 = new Worker('Savanna', 'Loe');
-worker1.checkSalaryEmployee()
+// Статические методы - методы, которыми мы можем воспользоваться не отстраивая экземпляр класса
+// В середине статических методов мы не используем this
 
-/*
-В середине класса геттеры/сеттеры работают с приватными полями.
-А при обращении к классу снаружи мы работаем с геттерами/сеттерами.
-*/
+// Вариант 1 для оглошения статического метода
+// Test.myStaticMethod = function (parameter) {
+//     // тело функции - что-то мы делаем
+//     console.log(parameter);
+// }
 
+Test.myStaticMethod('123');
 
-/*
-Сделать геттер и сеттер для поля workingDaysInMonth
-Предвидеть проверки в сеттерах
-Проверить работу сеттера и геттера
-*/
+const obj1 = new Test('test1', 'test2');
+obj1.method();
+
