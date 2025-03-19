@@ -1,78 +1,42 @@
 /*
-Напишите класс RangeValidator.
+Задача: Создание диапазона чисел с шагом
+Условие:
+Напиши функцию range, которая принимает три аргумента:
 
-В классе должно быть 2 свойства: from, to
-from, to - числа, по типу данных.
+start — начальное число диапазона (включительно).
+end — конечное число диапазона (включительно).
+step — шаг, с которым будут идти числа в диапазоне.
+Функция должна возвращать массив чисел в диапазоне от start до end с шагом step. Если шаг меньше или равен нулю, функция должна выбрасывать ошибку.
 
-Задача: реализовать сеттеры и геттеры для обоих свойств
-Реализовать такие ограничения: from не может быть больше чем to
+Пример:
+console.log(range(1, 10, 2)); // [1, 3, 5, 7, 9]
+console.log(range(5, 15, 3)); // [5, 8, 11, 14]
+console.log(range(10, 10, 1)); // [10]
 
-Реализовать обычный метод getRange, который должен возвращать массив целых чисел из этого диапазона
+Подсказки:
+Используй Array.from() для создания массива.
+Длина массива будет вычисляться как (end - start) / step + 1.
+Используй индекс элемента в функции обратного вызова для вычисления каждого числа с шагом.
 
-const object1 = new RangeValidator(2, 5);
-object1.getRange(); // [2, 3, 4, 5]
 */
 
-class RangeValidator {
-    constructor(value1, value2) {
-        this.from = value1;
-        this.to = value2;
+function range(start, end, step) {
+     // Check that all arguments are passed
+    if(start === undefined || end === undefined || step === undefined) {
+        throw new TypeError('Values must be entered at all arguments');
     }
-
-    // Setter for from
-    set from(value1) {
-        if(value1 === undefined) {
-            throw new TypeError('value1 undefined');
-        }
-        if(typeof value1 !== 'number') {
-            throw new TypeError('value1 not a number');
-        }
-        if(value1 < 0) {
-            throw new RangeError('value1 must not be below 0');
-        }
-
-        this._from = value1;
+    // Check for data type
+    else if(typeof start !== 'number'|| typeof end !== 'number' || typeof step !== 'number') {
+        throw new TypeError('All arguments must be numbers');
     }
-
-    // Getter for from
-    get from() {
-        return this._from;
+    // Check that start is not greater than end
+    else if(start > end) {
+        throw new RangeError('start cannot be greater than end');
     }
-
-
-    // Setter for to
-    set to(value2) {
-        if(value2 === undefined) {
-            throw new TypeError('value2 undefined');
-        }
-        if(typeof value2 !== 'number') {
-            throw new TypeError('value2 not a number');
-        }
-        if(value2 < 0) {
-            throw new RangeError('value2 must not be below 0');
-        }
-
-        this._to = value2;
-    }
-
-    // Getter for to
-    get to() {
-        return this._to;
-    }
-
-
-    // Method that returns an array of integers from 'from' to 'to'
-    getRange() {
-        if(this.from > this.to) {
-            throw new Error("from can't be bigger than to");
-        }
-        let result = [];
-        for(let i = this.from; i <= this.to; i++) {
-            result.push(i);
-        }
-        console.log(result);
+    // Array creation and step transition from start to end
+    else {
+        return Array.from({length: Math.floor((end - start) / step + 1)}, (v, i) => start + i * step);
     }
 }
 
-let object1 = new RangeValidator(2, 4);
-object1.getRange();
+console.log(range(2, 56, 20));
