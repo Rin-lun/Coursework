@@ -23,192 +23,202 @@
 
 */
 
+/* +++
+Реализовать статический метод в классе Students
+Этот метод принимает массив экземпляров класса Students вычисляет и возвращает как результат работы средний балл всех студентов из массива
+
+*/
+
+
+    /**
+     * Валидация значения и его типа
+     * @param {any} value - Значение, которое необходимо проверить
+     * @param {string} name - Имя свойства, которое проверяется
+     * @param {string} expeteType - Ожидаемый тип данных для значения
+     * @throws {TypeError} Если тип значеения не соответствует ожидаемому
+     * @throws {TypeError} Если значение пустое
+     */
+    const getValidatedValue = (name, value, expeteType) => {
+        if(typeof value !== expeteType) {
+            throw new TypeError(`${name} must be a ${expeteType}`);
+        }
+        if(!value) {
+            throw new TypeError(`${name} cannot be empty`);
+        }
+        
+        return value;
+    }
+
+/**
+ * Класс для заполнения данных человека
+*/
 class Human {
+    /**
+    * @param {string} surname - Фамилия человека
+    * @param {string} firstName - Имя человека
+    * @param {string} patronymic - Отчество человека
+    * @param {number} age - Возраст человека
+    * @param {string} gender - Пол человека
+*/
     constructor(surname, firstName, patronymic, age, gender) {
-        this.surname = surname;
-        this.firstName = firstName;
-        this.patronymic = patronymic;
-        this.age = age;
-        this.gender = gender;
+        this._surname = getValidatedValue('surname', surname, 'string');
+        this._firstName = getValidatedValue('firstName', firstName, 'string');
+        this._patronymic = getValidatedValue('patronymic', patronymic, 'string');
+        this._age = getValidatedValue('age', age, 'number');
+        this._gender = getValidatedValue('gender', gender, 'string');
     }
 
-// Setter for surname
-set surname(surname) {    
-    if(!surname) {
-        throw new TypeError('surname cannot be empty');
-    }
-    if(typeof surname !== 'string') {
-        throw new TypeError('surname cannot contain numbers');
-    }
-
-    this._surname = surname;
-}
-
-// Getter for surname
-get surname() {
-    return this._surname;
-}
-
-
-// Setter for firstName
-set firstName(firstName) {    
-    if(!firstName) {
-        throw new TypeError('firstName cannot be empty');
-    }
-    if(typeof firstName !== 'string') {
-        throw new TypeError('firstName cannot contain numbers');
-    }
-
-    this._firstName = firstName;
-}
-
-// Getter for firstName
-get firstName() {
-    return this._firstName;
-}
-
-
-// Setter for patronymic
-set patronymic(patronymic) {    
-    if(!patronymic) {
-        throw new TypeError('patronymic cannot be empty');
-    }
-    if(typeof patronymic !== 'string') {
-        throw new TypeError('patronymic cannot contain numbers');
-    }
-
-    this._patronymic = patronymic;
-}
-// Getter fo patronymic
-get patronymic() {
-    return this._patronymic;
-}
-
-
-// Setter for age
-set age(age) {    
-    if(!age) {
-        throw new TypeError('age cannot be empty');
-    }
-    if(typeof age !== 'number') {
-        throw new TypeError('age must contain a number');
-    }
-
-    this._age = age;
-}
-
-// Getter for age
-get age() {
-    return this._age;
-}
-
-
-// Setter for gender
-set gender(gender) {    
-    if(!gender) {
-        throw new TypeError('gender cannot be empty');
-    }
-    if(typeof gender !== 'string') {
-        throw new TypeError('gender cannot contain numbers');
-    }
-
-    this._gender = gender;
-}
-
-// Getter for gender
-get gender() {
-    return this._gender;
-}
-
-
-// Greeting method
-    greeting() {
-        if(this.gender === 'men' || this.gender === 'boy') {
-            return `Hello Mr. ${this.surname} ${this.firstName}`;
-        }
-        if(this.gender === 'women' || this.gender === 'girl') {
-            return `Hello Mrs. ${this.surname} ${this.firstName}`;
+    /**
+     * Сеттер для установки и проверки значений
+     * @param {string} property - Имя свойства, которое устанавливается
+     * @param {any} value - Значение, которое присваивается свойству
+     * @throws {TypeError} Если тип данных значения не соответствует ожидаемоу
+     * @throws {RangeError} Если возраст или другие данные не соответсвуют ограничениям
+    */
+    set(property, value) {
+        if(property === 'age' && (value < 0 || value > 100)) {
+            throw new RangeError('age must be between 0 and 100');
         }
 
-        return `Hello ${this.surname} ${this.firstName}`;
-    }
-}
-
-class Student extends Human {
-    constructor(surname, firstName, patronymic, age, gender, yearAccessions, gradeDiaryNumber, averageScore) {
-        super (surname, firstName, patronymic, age, gender);
-        this.yearAccessions = yearAccessions;
-        this.gradeDiaryNumber = gradeDiaryNumber;
-        this.averageScore = averageScore;
-    }
-
-    // Setter for yearAccessions
-    set yearAccessions(yearAccessions) {    
-        if(!yearAccessions) {
-            throw new TypeError('yearAccessions cannot be empty');
-        }
-        if(typeof yearAccessions !== 'number') {
-            throw new TypeError('yearAccessions must contain a number');
+        // Валидация значения с учётом свойства
+        switch (property) {
+            case 'surname':
+            case 'firstName':
+            case 'patronymic':
+            case 'gender':
+                getValidatedValue(property, value, 'string');
+                break;
+            case 'age':
+                getValidatedValue(property, value, 'number');
+                break;
+            default:
+                throw new Error(`Unkown property: ${property}`);
         }
 
-        this._yearAccessions = yearAccessions;
-    }
-
-    // Getter for yearAccessions
-    get yearAccessions() {
-        return this._yearAccessions;
-    }
-
-    // Setter for gradeDiaryNumber
-    set gradeDiaryNumber(gradeDiaryNumber) {    
-        if(!gradeDiaryNumber) {
-            throw new TypeError('gradeDiaryNumber cannot be empty');
-        }
-        if(typeof gradeDiaryNumber !== 'number') {
-            throw new TypeError('gradeDiaryNumber must contain a number');
-        }
-
-        this._gradeDiaryNumber = gradeDiaryNumber;
-    }
-
-    // Getter for gradeDiaryNumber
-    get gradeDiaryNumber() {
-        return this._gradeDiaryNumber;
-    }
-
-
-        // Setter for averageScore
-    set averageScore(averageScore) {    
-        if(!averageScore) {
-            throw new TypeError('averageScore cannot be empty');
-        }
-        if(typeof averageScore !== 'number') {
-            throw new TypeError('averageScore must contain a number');
-        }
-        if(averageScore > 100) {
-            throw new RangeError('averageScore cannot be higher than 100 points');
-        }
-        if(averageScore < 0) {
-            throw new RangeError('averageScore cannot be less than 0 points');
-        }
-
-        this._averageScore = averageScore;
-    }
-
-    // Getter for averageScore
-    get averageScore() {
-        return this._averageScore;
+        // Присвоение значения в приватное свойтсво
+        this[`_${property}`] = value;
     }
     
+    /**
+     * Геттер для получения значения свойства
+     * @param {string} property - Имя свойства, которое нужно получить
+     * @returns {any} Значение свойства
+     */
 
-    // Method for identifying an excellent student
-    isExcellentStudent() {
-        return this.averageScore >= 90;
-    };
+    get(property) {
+        return this[`_${property}`];
+    }
+
+    /**
+     * Метод для приветсвтия в зависимости от пола
+     * @returns {string} Приветствие
+     */
+
+    greeting() {
+        let prefix; // Переменная для сохранения обращения в зависимости от пола
+        if(this._gender === 'male') {
+            prefix = 'Mr.';
+        }  
+        else if(this._gender === 'female') {
+            prefix = 'Mrs.';
+        }
+        else {
+            prefix = 'Mx.'; // для других случаев, если пол не задан или равен неопределенному значению
+        }
+        
+        return `Hello ${prefix} ${this._surname} ${this._firstName}`;
+    }
 }
 
 
-const human = new Human('Go', 'Gun', 'Duuu', 32, 'men');
-const student = new Student('Gorgi', 'Natali', 'Gun', 16, 'girl', 2012, 382456, 43);
-console.log(human.greeting());
-console.log(student.isExcellentStudent());
+/**
+ * Класс для заполнения данных студента, наследующий от класса Human
+ * @extends Human
+ */
+class Student extends Human {
+    /**
+     * @param {string} surname - Фамилия студента
+     * @param {string} firstName - Имя студента
+     * @param {string} patronymic - Отчество студента
+     * @param {number} age - Возраст студента
+     * @param {string} gender - Пол студента
+     * @param {number} yearAccessions - Год поступления
+     * @param {number} gradeDiaryNumber - Номер зачётной книжкт
+     * @param {number} averageScore - Средний балл студента
+     */
+
+    constructor(surname, firstName, patronymic, age, gender, yearAccessions, gradeDiaryNumber, averageScore) {
+        super(surname, firstName, patronymic, age, gender);
+        this._yearAccessions = getValidatedValue('yearAccessions', yearAccessions, 'number');
+        this._gradeDiaryNumber = getValidatedValue('gradeDiaryNumber', gradeDiaryNumber, 'number');
+        this._averageScore = getValidatedValue('averageScore', averageScore, 'number');
+    }
+
+    /**
+     * Сеттер для установки и проверки значений
+     * @param {string} property - Имя для свойства, которе устанавливается
+     * @param {any} value - Значение, которое присваивается свойству
+     * @throws {RangeError} Если средний балл выходит за пределы диапазона 0-100
+     */
+    set (property, value) {
+        if(property === 'averageScore' && (value < 0 || value > 100)) {
+            throw new RangeError('averageScore must be between 0 and 100');
+        }
+
+        switch(property) {
+            case 'yearAccessions':
+            case 'gradeDiaryNumber':
+            case 'averageScore':
+                getValidatedValue(property, value, 'number');
+                break;
+            default:
+                throw new Error(`Unkown property: ${property}`);
+        }
+
+        super.set(property, value); // Вызываем родительский сеттер
+    }
+
+    /**
+     *  Метод для проверки, является ли студент отличником
+     * @returns {boolean} True, если студент отличник (средний балл >= 90)
+     */
+    isExcellentStudent() {
+        return this._averageScore >= 90;
+    }
+/**
+ * Метод принимает массив экземпляров класса Students вычисляет и возвращает как результат работы средний балл всех студентов из массива
+ * @param {object} students Принимаемый массив со всеми студентами
+ * @returns {number} Средний бал все учащихся 
+ */
+    static averageScoreOfAllStudents(students) {
+        if(students.length === 0) {
+            return 0;
+        }
+
+        const result = students.reduce((accumulator, student) => accumulator + student._averageScore, 0) / students.length;
+        return result.toFixed();
+    }
+
+}
+
+
+// Пример использования
+
+const human = new Human('Smith', 'John', 'Doe', 25, 'male');
+console.log(human.greeting());  // Hello Mr. Smith John
+
+// Устанавливаем и получаем значение
+human.set('surname', 'Johnson');  // Устанавливаем фамилию через сеттер
+console.log(human.get('surname'));  // Получаем фамилию через геттер
+
+// Создаем объекты студентов
+const student1 = new Student('Goro', 'Doe', 'Gun', 16, 'female', 2020, 123454, 85);
+const student2 = new Student('John', 'Doe', 'Fyi', 24, 'male', 2021, 123456, 89);
+const student3 = new Student('Jane', 'Doe', 'Dety', 34, 'female', 2022, 123457, 70);
+const student4 = new Student('Josh', 'Doe', 'Asero', 32, 'male', 2022, 123458, 77);
+
+// Создаём массив со всеми студентами и используем метод для вычесления среднего балла всех учащихся
+const students = [student1, student2, student3, student4];
+console.log(Student.averageScoreOfAllStudents(students));
+
+
