@@ -1,224 +1,163 @@
+// ООП
+
 /*
-Класс Человек и последующий класс Студент
+1. ООП построен вокруг объектов.
+2. Разделение нужно для того, чтобы можно было создавать, обслуживатть и переделывать какие-то части программы, не влияя при этом на другие.
+3. Смысл объекта в том, что он имеет свои какие-то методы, то есть он умеет что-то делать, при этом остальные объекты не знают как он это делпет 
+4. Объект имеет понятие атрибута и метода.
+Атрибут - любые данные, которые сохраняюся внутри объекта.
+Методы - любые действия, которые можно осуществлять над объектом, атрибутами объекта.
+Атрибуты выражаются переменными, а методы - функциями.
+5. Объекты можно называть классами за шаблоном - такие шаблоны называют классами
+*/
 
-1. Создать базовый класс человек с такими свойствами:
-- ФИО
-- Возраст
-- Пол
+// Геттеры и сеттеры - аксессоры (от англ. access - доступ)
 
-2. Создать последующий класс Студент, который наследует свойства класса Человек
-Добавить к классу Студент такие дополнительные свойства:
-- Год вступления
-- Номер зачётной книжки
-- Средний бал
+// Абстракция - когда сы сосредотачиваемся только на существенных для задания деталях (когда описываем объект) и игнорируем всё остальное 
+// Чем меньше характеристик у объекта, тем лучше абстракция, но ключевые характеристики нельзя убирать 
 
-3. Реализовать следующие методы.
+// Чтобы работать с абстракциями, используют интерфейсы
+// Интерфейс - способ взаимодействовать с объектом, который определяет какие операции можно сделать с этим объектом и какие данные можно получить или сменить
 
-В классе Человек: 
-- greering() - этот метод возвращает приветствие для человека, в зависисмооти от его пола (Mr. или Mrs.)
+// Инкапсуляция - процесс объеденения данных и методов в одном объекте и скрытие деталей реализации от пользователя
 
-В классе Студент:
-- isExcellentStudent() - этот метод проверяет, является ли студент отличником или нет, на основе его среднего балла.
-Если средний балл студента выше или равен 90, то метод вернёт true, в другом случае - false
+// В чём разница между инкапсуляцией и абстракцией?
+// Инкапсуляция сосредоточена на организации и скрытии деталей реализации объекта
+// Абстракция упрощает сложность системы путём выделения ключевых аспектов на скрытии незначных деталей
+
+// Наследование - способность до копирования, возможность описать новый класс на основе уже существуещего.
+
+// ООП
+
+/* Загальні ідеї ООП
+
+1. ООП збудоване навколо об'єктів.
+2. Поділ потрібний для того, щоб можна було створювати, осблуговувати та перетворювати якісь частини програми, не впливаючи при цьому на інші.
+3. Сенс об'єкта у тому, що він має якісь методи, тобто він вміє щось робити, при цьому, інші об'єкти вони не знають як він це робить
+4. Об'єкт має поняття атрибуту і методу.
+Атрибут - будь-які дані, які зберігаються всередині об'єкта.
+Методи - будь-які дії, які можна здійснювати над об'єктом, атрибутами об'єкта.
+Атрибути зазвичай виражаються змінними, а методи - функціями.
+5. Об'єкти можна створювати за шаблоном - такі шаблони називають класами.
 
 */
 
-/* +++
-Реализовать статический метод в классе Students
-Этот метод принимает массив экземпляров класса Students вычисляет и возвращает как результат работы средний балл всех студентов из массива
 
-*/
+// Геттери та сеттери - аксессори (від англ. access - доступ)
 
 
-    /**
-     * Валидация значения и его типа
-     * @param {any} value - Значение, которое необходимо проверить
-     * @param {string} name - Имя свойства, которое проверяется
-     * @param {string} expeteType - Ожидаемый тип данных для значения
-     * @throws {TypeError} Если тип значеения не соответствует ожидаемому
-     * @throws {TypeError} Если значение пустое
-     */
-    const getValidatedValue = (name, value, expeteType) => {
-        if(typeof value !== expeteType) {
-            throw new TypeError(`${name} must be a ${expeteType}`);
-        }
-        if(!value) {
-            throw new TypeError(`${name} cannot be empty`);
-        }
-        
-        return value;
+// Абстракція - коли ми зосереджуємося тільки на суттєвих для завдання деталях (коли описуємо об'єкт) і ігноруємо все інше.
+// Чим менше характеристик у об'єкта, тим краще абстракція, але ключові характеристи не можна прибирати!
+
+// Щоб працювати з абстракціями, використовують інтерфейси
+// Інтерфейс - спосіб взаємодії з об'єктом, який визначає, які операції можна здійснити з цим об'єктом та які дані можна отримати або змінити
+
+// Інкапсуляція - процесс об'єднання даних та методів в одному об'єкті і приховування деталей реалізації від користувача
+
+// В чому різниця між інкапсуляцією і абстракцією?
+// Інкапсуляція зосереджена на організації та приховуванні деталей реалізації об'єкта
+// Абстракція спрощує складність системи шляхом виділення ключових аспектів та приховуванні незначних деталей
+
+// Спадкування - здатність до копіювання, можливість описати новий клас на основі вже існуючого.
+
+
+class Figure {
+    constructor(sideQuantity) {
+        this.sideQuantity = sideQuantity;
     }
 
-/**
- * Класс для заполнения данных человека
-*/
-class Human {
-    /**
-    * @param {string} surname - Фамилия человека
-    * @param {string} firstName - Имя человека
-    * @param {string} patronymic - Отчество человека
-    * @param {number} age - Возраст человека
-    * @param {string} gender - Пол человека
-*/
-    constructor(surname, firstName, patronymic, age, gender) {
-        this._surname = getValidatedValue('surname', surname, 'string');
-        this._firstName = getValidatedValue('firstName', firstName, 'string');
-        this._patronymic = getValidatedValue('patronymic', patronymic, 'string');
-        this._age = getValidatedValue('age', age, 'number');
-        this._gender = getValidatedValue('gender', gender, 'string');
+    get sideQuantity() {
+        return this._sideQuantity;
     }
 
-    /**
-     * Сеттер для установки и проверки значений
-     * @param {string} property - Имя свойства, которое устанавливается
-     * @param {any} value - Значение, которое присваивается свойству
-     * @throws {TypeError} Если тип данных значения не соответствует ожидаемоу
-     * @throws {RangeError} Если возраст или другие данные не соответсвуют ограничениям
-    */
-    set(property, value) {
-        if(property === 'age' && (value < 0 || value > 100)) {
-            throw new RangeError('age must be between 0 and 100');
+    set sideQuantity(newValue) {
+        if(newValue < 0) {
+            throw new RangeError('Side quantity can`t be less than 0');
         }
 
-        // Валидация значения с учётом свойства
-        switch (property) {
-            case 'surname':
-            case 'firstName':
-            case 'patronymic':
-            case 'gender':
-                getValidatedValue(property, value, 'string');
-                break;
-            case 'age':
-                getValidatedValue(property, value, 'number');
-                break;
-            default:
-                throw new Error(`Unkown property: ${property}`);
-        }
-
-        // Присвоение значения в приватное свойтсво
-        this[`_${property}`] = value;
-    }
-    
-    /**
-     * Геттер для получения значения свойства
-     * @param {string} property - Имя свойства, которое нужно получить
-     * @returns {any} Значение свойства
-     */
-
-    get(property) {
-        return this[`_${property}`];
+        this._sideQuantity = newValue;
     }
 
-    /**
-     * Метод для приветсвтия в зависимости от пола
-     * @returns {string} Приветствие
-     */
 
-    greeting() {
-        let prefix; // Переменная для сохранения обращения в зависимости от пола
-        if(this._gender === 'male') {
-            prefix = 'Mr.';
-        }  
-        else if(this._gender === 'female') {
-            prefix = 'Mrs.';
-        }
-        else {
-            prefix = 'Mx.'; // для других случаев, если пол не задан или равен неопределенному значению
-        }
-        
-        return `Hello ${prefix} ${this._surname} ${this._firstName}`;
+    getArea() {
+        //  
     }
 }
 
-
-/**
- * Класс для заполнения данных студента, наследующий от класса Human
- * @extends Human
- */
-class Student extends Human {
-    /**
-     * @param {string} surname - Фамилия студента
-     * @param {string} firstName - Имя студента
-     * @param {string} patronymic - Отчество студента
-     * @param {number} age - Возраст студента
-     * @param {string} gender - Пол студента
-     * @param {number} yearAccessions - Год поступления
-     * @param {number} gradeDiaryNumber - Номер зачётной книжкт
-     * @param {number} averageScore - Средний балл студента
-     */
-
-    constructor(surname, firstName, patronymic, age, gender, yearAccessions, gradeDiaryNumber, averageScore) {
-        super(surname, firstName, patronymic, age, gender);
-        this._yearAccessions = getValidatedValue('yearAccessions', yearAccessions, 'number');
-        this._gradeDiaryNumber = getValidatedValue('gradeDiaryNumber', gradeDiaryNumber, 'number');
-        this._averageScore = getValidatedValue('averageScore', averageScore, 'number');
+class Triangle extends Figure {
+    constructor(a, b, angle) {
+        super(3);
+        this.a = a;
+        this.b = b;
+        this.angle = angle;
     }
 
-    /**
-     * Сеттер для установки и проверки значений
-     * @param {string} property - Имя для свойства, которе устанавливается
-     * @param {any} value - Значение, которое присваивается свойству
-     * @throws {RangeError} Если средний балл выходит за пределы диапазона 0-100
-     */
-    set (property, value) {
-        if(property === 'averageScore' && (value < 0 || value > 100)) {
-            throw new RangeError('averageScore must be between 0 and 100');
+    get a() {
+        return this._a;
+    }
+
+    set a(newValue) {
+        if(newValue < 0) {
+            throw new RangeError('Side cannot be less than 0');
         }
 
-        switch(property) {
-            case 'yearAccessions':
-            case 'gradeDiaryNumber':
-            case 'averageScore':
-                getValidatedValue(property, value, 'number');
-                break;
-            default:
-                throw new Error(`Unkown property: ${property}`);
+        this._a = newValue;
+    }
+
+
+    get b() {
+        return this._b;
+    }
+
+    set b(newValue) {
+        if(newValue < 0) {
+            throw new RangeError('Side cannot be less than 0');
         }
 
-        super.set(property, value); // Вызываем родительский сеттер
+        this._b = newValue;
     }
 
-    /**
-     *  Метод для проверки, является ли студент отличником
-     * @returns {boolean} True, если студент отличник (средний балл >= 90)
-     */
-    isExcellentStudent() {
-        return this._averageScore >= 90;
+
+    get angle() {
+        return this._angle;
     }
-/**
- * Метод принимает массив экземпляров класса Students вычисляет и возвращает как результат работы средний балл всех студентов из массива
- * @param {object} students Принимаемый массив со всеми студентами
- * @returns {number} Средний бал все учащихся 
- */
-    static averageScoreOfAllStudents(students) {
-        if(students.length === 0) {
-            return 0;
+
+    set angle(newValue) {
+        if(newValue < 0) {
+            throw new RangeError('Angle cannot be less than 0');
         }
 
-        const result = students.reduce((accumulator, student) => accumulator + student._averageScore, 0) / students.length;
-        return result.toFixed();
+        this._angle = newValue;
     }
 
+
+    getArea() {
+        return this.a * this.b * Math.sin(this.angle);
+    }
 }
 
+class Square extends Figure {
+    constructor(a) {
+        super(4);
+        this.a = a;
+    }
 
-// Пример использования
+    get a() {
+        return this._a;
+    }
 
-const human = new Human('Smith', 'John', 'Doe', 25, 'male');
-console.log(human.greeting());  // Hello Mr. Smith John
+    set a(newValue) {
+        if(newValue < 0) {
+            throw new RangeError('Side cannot be less than 0');
+        }
 
-// Устанавливаем и получаем значение
-human.set('surname', 'Johnson');  // Устанавливаем фамилию через сеттер
-console.log(human.get('surname'));  // Получаем фамилию через геттер
-
-// Создаем объекты студентов
-const student1 = new Student('Goro', 'Doe', 'Gun', 16, 'female', 2020, 123454, 85);
-const student2 = new Student('John', 'Doe', 'Fyi', 24, 'male', 2021, 123456, 89);
-const student3 = new Student('Jane', 'Doe', 'Dety', 34, 'female', 2022, 123457, 70);
-const student4 = new Student('Josh', 'Doe', 'Asero', 32, 'male', 2022, 123458, 77);
-
-// Создаём массив со всеми студентами и используем метод для вычесления среднего балла всех учащихся
-const students = [student1, student2, student3, student4];
-console.log(Student.averageScoreOfAllStudents(students));
+        this._a = newValue;
+    }
 
 
+    getArea() {
+        return this.a ** 2;
+    }
+}
+
+const square = new Square(4);
