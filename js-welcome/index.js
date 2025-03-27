@@ -1,19 +1,56 @@
-/*
-Symbol - представляет собой уникальный идентификатор
-Каждый созданный символ имеет свой собственный уникальный идентификатор, который нигде и никогда не будет повторяться
-Особенность символов - они всегда уникальные
+// Переписать MyArray на классы
 
-// Гарантия уникальности - единсвтенное, для чего Symbol и существует
-*/
+class MyArray {
+    constructor() {
+        this.length = 0;
+    }
 
-const mySymbol = Symbol(); // без new!
+    push() {
+        for(let i = 0; i < arguments.length; i++) {
+            this[this.length] = arguments[i];
+            this.length++;
+        }
 
-// const symb2 = Symbol('Mu second symbol'); // label for human
+        return this.length;
+    }
 
-const obj = {
-    // В объектах ключами могут быть ряды или символы
-    'test': 1,
-    [mySymbol]: 123
+    pop() {
+        if(this.length > 0) {
+            const lastItem = this[this.length - 1];
+            delete this[this.length - 1];
+            this.length--;
+            return lastItem;
+        } 
+        else {
+            return undefined;
+        }
+    }
+
+    forEach(callback) {
+        for(let i = 0; i < this.length; i++) {
+            callback(this[i], i, this);
+        }
+    }
+
+    map(callback) {
+        // 1.Создали пустой массив. Он будет результирующим массивом
+        const resultArray = new MyArray;
+
+        // 2. Пройтись по текущему массиву от начала до конца
+        for(let i = 0; i < this.length; i++) {
+            // Запихиваем в результирующий массив значение, которое нам будет возвращать (return) колбек
+            resultArray.push(callback(this[i], i, this));
+        }  
+
+        // 3. Вернуть как результат работы метода map - массив результат
+        return resultArray;
+    }
 }
 
-console.log(obj[mySymbol]); // 123
+const arr = new MyArray();
+
+arr.push(1, 2, 3, 56, 8776);
+
+// Задача: создать новый массив, который будет содержать квадраты чисел с массива arr
+
+const doubleNumbers = arr.map(item => item ** 2);
