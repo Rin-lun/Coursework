@@ -1,63 +1,42 @@
-/*
+// Переписать MyArray на классы
 
-Фабричный метод - способ создавать объекты, который позволяет не указывать конкретный класс объекта
-Используем специальную фабрику для создания объектов
-Фабрика знает, какой именно объект создать и возвращает его нам
-
-new Student(); // так не делаем!
-
-Обращаемся к фабрике, уведомляем, что нам нужно, фабрика уже будет делать нам экземпляры нужного класса (new Student)
-
-*/
-
-// Абстрактный класс или интерфейс
-class Animal {
-    constructor(nickname) {
-        this.nickname = nickname;
+class MyArray {
+    constructor() {
+        this.length = 0;
     }
 
-    makeSound() { // абстрактный метод
+    push() {
+        for(let i = 0; i < arguments.length; i++) {
+            this[this.length] = arguments[i];
+            this.length++;
+        }
 
-    }
-}
-
-class Dog extends Animal {
-    constructor(nickname) {
-        super(nickname);
-    }
-
-    makeSound() { // виртуальный метод
-        console.log('Гав-гав');
-    }
-}
-
-class Cat extends Animal {
-    constructor(nickname) {
-        super(nickname);
+        return this.length;
     }
 
-    makeSound() { // виртуальный метод
-        console.log('Мяу-мяу');
+    pop() {
+        if(this.length > 0) {
+            const lastItem = this[this.length - 1];
+            delete this[this.length - 1];
+            this.length--;
+            return lastItem;
+        } 
+        else {
+            return undefined;
+        }
     }
-}
 
-// Фаюричный класс, который создаёт объекты
-class AnimalFactory {
-    static createAnimal(type, nickname) {
-        switch(type) {
-            case 'dog': return new Dog(nickname);
-            case 'cat': return new Cat(nickname);
-            default: throw new Error(`Неизвестный тип животного: ${type}`);
+    forEach(callback) {
+        for(let i = 0; i < this.length; i++) {
+            callback(this[i], i, this);
         }
     }
 }
 
-// Применение фабрики для создания объектов
+const arr = new MyArray();
 
-// Создать объект собаки
-const dog = AnimalFactory.createAnimal('dog', 'Tuzik');
-dog.makeSound(); // Гав-гав
-
-// Создать объект кота
-const cat = AnimalFactory.createAnimal('cat', 'Murzik')
-cat.makeSound(); // Мяу-мяу
+arr.push(1, 2, 3, 56, 8776);
+arr.pop();
+arr.forEach((item) => {
+    console.log(item ** 2);
+});
