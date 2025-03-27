@@ -1,42 +1,19 @@
-// Переписать MyArray на классы
+/*
+Symbol - представляет собой уникальный идентификатор
+Каждый созданный символ имеет свой собственный уникальный идентификатор, который нигде и никогда не будет повторяться
+Особенность символов - они всегда уникальные
 
-class MyArray {
-    constructor() {
-        this.length = 0;
-    }
+// Гарантия уникальности - единсвтенное, для чего Symbol и существует
+*/
 
-    push() {
-        for(let i = 0; i < arguments.length; i++) {
-            this[this.length] = arguments[i];
-            this.length++;
-        }
+const mySymbol = Symbol(); // без new!
 
-        return this.length;
-    }
+// const symb2 = Symbol('Mu second symbol'); // label for human
 
-    pop() {
-        if(this.length > 0) {
-            const lastItem = this[this.length - 1];
-            delete this[this.length - 1];
-            this.length--;
-            return lastItem;
-        } 
-        else {
-            return undefined;
-        }
-    }
-
-    forEach(callback) {
-        for(let i = 0; i < this.length; i++) {
-            callback(this[i], i, this);
-        }
-    }
+const obj = {
+    // В объектах ключами могут быть ряды или символы
+    'test': 1,
+    [mySymbol]: 123
 }
 
-const arr = new MyArray();
-
-arr.push(1, 2, 3, 56, 8776);
-arr.pop();
-arr.forEach((item) => {
-    console.log(item ** 2);
-});
+console.log(obj[mySymbol]); // 123
