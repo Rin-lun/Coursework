@@ -1,19 +1,25 @@
-// Задача: сохранить распорядок занятий, используя дни недели как ключи, а значениями будут списки занятий
+// Задача: с помощью Map связать пользователя с его сообщениями, чтобы по ID пользователя, можно было найти его сообщения
 
-const schedule = new Map();
 
-// Добавление занятий к расписанию
-schedule.set('Понедельник', ['Математика', 'Физика']);
-schedule.set('Вторник', ['Английский язык', 'Всемирная история']);
-schedule.set('Среда', ['Химия', 'География']);
-schedule.set('Четверг', ['Зарубежная литература', 'Биология']);
-schedule.set('Пятница', ['Информатика', 'Физкультура']);
+const user1 = {
+    firstName: 'Alex',
+    lastName: 'Doe',
+    id: 1
+}
 
-// Получение расписания занятий для определенного дня
-console.log(schedule.get('Понедельник'));
+const user2 = {
+    firstName: 'John',
+    lastName: 'Doe',
+    id: 2
+}
 
-// Проверка, есть ли расписание для определенного дня
-console.log(schedule.has('Суббота'));
+const johnMessages = ['hello', 'How are you?'];
+const alexMessages = ['hi!', 'I`m fine'];
 
-// Получение количества дней занятий в расписании
-console.log(schedule.size);
+
+const messageUser = new Map();
+
+messageUser.set((`${user1.id}: ${user1.firstName} ${user1.lastName}`), alexMessages);
+messageUser.set((`${user2.id}: ${user2.firstName} ${user2.lastName}`), johnMessages);
+
+console.log(messageUser);
