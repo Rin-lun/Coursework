@@ -1,57 +1,31 @@
-new Map(); // <-- [['key1', 'value1'], ['key2', 'value2'], ['key3', 'value3']];
+// Set - множество, набор уникальных значений
 
-// Map.prototype.entries() - метод который будет возвращать итератор. Итератор возвращает пары ключ-значение для каждого элемента
+const set = new Set;
 
-const map1 = new Map([['key1', 'value1'], ['key2', 'value2']]);
-const entriesIterator = map1.entries();
+// Set.prototype.add() - он добавляет элемент с заданным значением в конец объекта Set 
 
-entriesIterator.next().value; // ['key1', 'value2'];
-entriesIterator.next().value; // ['key2', 'value2'];
-entriesIterator.next().value; // value: undefined, done: true
-
-
-// Map.prototype.keys() - метод, который возвращает итератор с всеми ключами с объкта Map
-
-const keysIterator = map1.keys();
-
-keysIterator.next(); // 'key1'
-keysIterator.next(); // 'key2'
-keysIterator.next(); // undefined, done: true
+set.add(1);
+set.add(4);
+set.add('Hello');
 
 
-// Map.prototype.values() - метод, который возвращает итератор с всеми pyfxtybzvb ключtq с объкта Map
+// Set.prototype.has() - проверяем наличие елемента в множине
 
-const valuesIterator = map1.values();
-
-valuesIterator.next(); // 'value1'
-valuesIterator.next(); // 'value2'
-valuesIterator.next(); // undefined, done: true
+console.log(set.has(1)); // true
+console.log(set.has(12)); // false
 
 
-// Map.prototype.forEach() - используется для итерации (перебора) всех элементов в Map и вызова определённой функции (callback) для каждого элемента
+// Set.prototype.delete() - удаляет элемент с множины
 
-// Задача: вывести на консоль мапу
-
-map1.forEach((value, key, map) => {
-    console.log(`${key} - ${value}`);
-});
+set.delete('Hello');
 
 
-// Map.prototype.delete() - используется для удаления пары ключ-значение с объкта Map соответственно к какому-то ключу
+// Set.prototype.values() - используется для получения итератора, который возвращает нам все значения с объкта Set
 
-// map1.delete('key1');
+const valuesIterator = set.values();
 
-console.log(map1.has('key1')); // false
-console.log(map1.get('key1')); // undefined
+valuesIterator.next().value; // 1
+valuesIterator.next().value; // 4
+valuesIterator.next().value; // undefined, done: true
 
-
-// Map.prototype.clear() - используются для полной очистки объкта Map, удаляя все пары ключ-значение, которые находятся там
-
-// map1.clear();
-
-console.log(map1); // 0
-
-
-// Задача: вывести на консоль мапу
-
-console.log(...map1);
+const arrayFromSet = [...set.values()];
