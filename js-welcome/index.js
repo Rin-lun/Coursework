@@ -1,31 +1,32 @@
-// Set - множество, набор уникальных значений
+/* 
+Задача 1
+Дано массив: [2, 3, 3, 5, 6, 77, 77, 5, 1, 1, 12, 12, 13];
+Вернуть массив без повторений
 
-const set = new Set;
+*/
 
-// Set.prototype.add() - он добавляет элемент с заданным значением в конец объекта Set 
-
-set.add(1);
-set.add(4);
-set.add('Hello');
-
-
-// Set.prototype.has() - проверяем наличие елемента в множине
-
-console.log(set.has(1)); // true
-console.log(set.has(12)); // false
+const array =  new Set([2, 3, 3, 5, 6, 77, 77, 5, 1, 1, 12, 12, 13]);
 
 
-// Set.prototype.delete() - удаляет элемент с множины
+/* 
+Задача 2
 
-set.delete('Hello');
+Даны два массива:
 
+const arr1 = [4, 3, 7, 5, -11];
+const arr2 = [3, 4, 8, 7, 2, -11];
 
-// Set.prototype.values() - используется для получения итератора, который возвращает нам все значения с объкта Set
+Вернуть из функции массив, состоящий из разницы двух массивов (то есть, тех значений, которые не повторяются в обоих массивах)
 
-const valuesIterator = set.values();
+Логика:
+Вы принимаете 2 массива
+Вам нужно сделать новый массив, но там не должно быть дублирований
 
-valuesIterator.next().value; // 1
-valuesIterator.next().value; // 4
-valuesIterator.next().value; // undefined, done: true
+*/
 
-const arrayFromSet = [...set.values()];
+const arr1 = [4, 3, 7, 5, -11];
+const arr2 = [3, 4, 8, 7, 2, -11];
+
+arr1.push(...arr2);
+const arr = new Set(arr1);
+
