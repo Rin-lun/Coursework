@@ -1,32 +1,40 @@
-/* 
-Задача 1
-Дано массив: [2, 3, 3, 5, 6, 77, 77, 5, 1, 1, 12, 12, 13];
-Вернуть массив без повторений
+const monitor = {
+    sizes: {
+        height: {
+            value: 30,
+            scale: 'cm'
+        },
+        width: {
+            value: 50,
+            scale: 'cm'
+        }
+    },
+    brightness: 750,
+    refresh: {
+        value: 144,
+        scale: 'GHz'
+    },
+    color: 'black',
+    resolution: '4K'
+}
 
-*/
+// const height = monitor.sizes.height.value;
 
-const array =  new Set([2, 3, 3, 5, 6, 77, 77, 5, 1, 1, 12, 12, 13]);
+// const {resolution, color: monitorColor} = monitor;
 
+// console.log(resolution);
+// console.log(monitorColor);
 
-/* 
-Задача 2
+// Задача: вытянуть value для высоты и ширины монитора
 
-Даны два массива:
+// const {sizes: {height: {value: heightValue}, width: {value: widthValue}}, brightness, refresh: {value: refreshValue}} = monitor;
 
-const arr1 = [4, 3, 7, 5, -11];
-const arr2 = [3, 4, 8, 7, 2, -11];
+// const {sizes: {height: {scale: heightScale}, width: {scale: widthScale}}} = monitor;
 
-Вернуть из функции массив, состоящий из разницы двух массивов (то есть, тех значений, которые не повторяются в обоих массивах)
+// console.log(heightValue);
+// console.log(widthValue);
+// console.log(refreshValue);
+// console.log(heightScale);
+// console.log(widthScale);
 
-Логика:
-Вы принимаете 2 массива
-Вам нужно сделать новый массив, но там не должно быть дублирований
-
-*/
-
-const arr1 = [4, 3, 7, 5, -11];
-const arr2 = [3, 4, 8, 7, 2, -11];
-
-arr1.push(...arr2);
-const arr = new Set(arr1);
-
+const {color, brightness, resolution, ...restOfMonitor} = monitor;
