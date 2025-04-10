@@ -18,23 +18,21 @@ const monitor = {
     resolution: '4K'
 }
 
-// const height = monitor.sizes.height.value;
+// У нас есть объект юзера
 
-// const {resolution, color: monitorColor} = monitor;
+const user = {
+    name: 'John',
+    age: 30,
+    address: {
+        city: 'Kyiv',
+        country: 'Ukraine'
+    },
+    contacts: {
+        email: 'john@gmail.com',
+        phone: '+380123456789'
+    }
+}
 
-// console.log(resolution);
-// console.log(monitorColor);
+// Задача: с использованием деструктаризации получить значение name, city, email, и phone
 
-// Задача: вытянуть value для высоты и ширины монитора
-
-// const {sizes: {height: {value: heightValue}, width: {value: widthValue}}, brightness, refresh: {value: refreshValue}} = monitor;
-
-// const {sizes: {height: {scale: heightScale}, width: {scale: widthScale}}} = monitor;
-
-// console.log(heightValue);
-// console.log(widthValue);
-// console.log(refreshValue);
-// console.log(heightScale);
-// console.log(widthScale);
-
-const {color, brightness, resolution, ...restOfMonitor} = monitor;
+const {name, address: {city}, contacts: {email, phone}} = user;
