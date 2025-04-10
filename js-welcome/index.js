@@ -1,60 +1,50 @@
-/*
-Существует 3 вида деструктуризации в JS:
-1. Деструктуризация объектов 
-2. Деструктуризация входных параметров
-3. Деструктуризация массивов
-
-*/
+// Замыкание позволяет функциям сохранять доступ к переменным, даже когда эти функции завершают свое выполнение
+// Замыкание - способность функции запоминать локальную область видимости
 
 
-// 2
-function getFullName({firstName, lastName, ...restObject}) { // все остальное кроме firstName, lastName игнорируется
-    console.log(restObject);
-    return `${firstName} ${lastName}`;
+let value = 10; // глобальная область видимости
+
+function wrapper() {
+    let value = 20; // локальная область видимости
+
+    console.log('WRAPPER function', value);
+
+    return function log() {
+        console. log('LOG function', value);
+    }
 }
 
-const user2 = {
-    firstName: 'John',
-    lastName: 'Doe',
-    age: 42,
-    geolocation: '42.2213123 56.11214545',
-    browser: 'Chrome'
+
+//////////////
+
+// function counter() {
+// let i = 0;
+// i++;
+// return i;
+// }
+
+function makeCounter() {
+    let i = 0;
+    return function() {
+        return i++; // i - переменная в замыкании
+    }
 }
 
-console.log(getFullName(user2));
 
+//////
 
+function makeCounterVersion2() {
+ // Если будет желание - попробуйте сделать методы, которые будут увеличивать/уменьшать counter на определенное количество единиц
+    let counter = 0;
 
-// 3
-const arr = [1, 2, 3, 4, 5, 6];
-// const firstElement = arr[0];
-
-const [firstElement, secondElement, ...restOfArr] = arr;
-
-
-
-const user = {
-    name: 'John',
-    age: 30,
-    address: {
-        city: 'Kyiv',
-        country: 'Ukraine'
-    },
-    contacts: [
-        {email: 'john@gmail.com'},
-        {phones: ['+380123456789', '+380123456781', '+380123456782']}
-    ]
+    return {
+        increment() {
+            return ++counter;
+        },
+        decrement() {
+            return --counter;
+        }
+    }
 }
 
-// const {contacts: {phones}} = user;
-
-// const [firstJohnNumber, secondJohnNumber, thirdJohnNumber] = phones;
-
-// const {contacts: {phones: [firstJohnNumber, secondJohnNumber, thirdJohnNumber]}} = user;
-
-
-// const {contacts: [emailObject, phonesArray]} = user;
-
-// const {email}= emailObject;
-// const {phones: [firstJohnNumber, secondJohnNumber, thirdJohnNumber]} = phonesArray;
-
+const fnObj = makeCounterVersion2();
