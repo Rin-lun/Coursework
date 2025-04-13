@@ -1,14 +1,18 @@
-function helloUser() {
-    const btn = event.target;
-    
-    if(btn.style.backgroundColor === 'red') {
-        btn.style.backgroundColor = 'unset';
-    }
-    else {
-        btn.style.backgroundColor = 'red';
-    }
-    
-}
+/*
+Задание
+При наведении на кнопку "Нет" - нужно её спрятать(display: 'none')
 
-const button = document.getElementById('button');
-button.addEventListener('mouseenter', helloUser);
+*/
+
+const noBtn = document.getElementById('buttonNo');
+
+function ghostBtn(event) {
+    // const btn = event.target;
+    // btn.style.display = 'none';
+
+    console.log('test');
+    
+    event.target.removeEventListener('mouseenter', ghostBtn);
+} 
+
+noBtn.addEventListener('mouseenter', ghostBtn);
