@@ -1,12 +1,13 @@
-/*
-Сделать кнопку, добавить ей Id
-Написать функцию, которая выводит в консоль "привет"
-Повесить обработку действия наведения мыши на эту кнопку
-
-*/
-
 function helloUser() {
-    console.log('Hello');
+    const btn = event.target;
+    
+    if(btn.style.backgroundColor === 'red') {
+        btn.style.backgroundColor = 'unset';
+    }
+    else {
+        btn.style.backgroundColor = 'red';
+    }
+    
 }
 
 const button = document.getElementById('button');
