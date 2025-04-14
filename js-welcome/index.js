@@ -1,20 +1,28 @@
-/*
+const collection = document.getElementsByClassName('paragraph');
 
-Создать форму в HTML
-В форме запрашивать имя пользователя
+// for (let i = 0; i < collection.length; i++) {
+//     collection[i].style.color = 'green';
+// }
 
-При отправлении формы - поприветствуйте пользователя ("Привет Имя пользователя")
-Имя пользователя взять с инпута формы
+// for ... of - специальный цикл, который перебирет объект по ключам
 
-*/
+for(let p of collection) {
+    p.style.color = 'green';
+}
 
-const form = document.getElementById('name-form');
+const btns = document.getElementsByTagName('button');
+const arr = [...btns];
 
-form.addEventListener('submit', greetingUser);
+arr.forEach((button) => {
+    button.style.color = 'red';
+})
 
-function greetingUser(event) {
-    const form = event.target;
-    const nameUser = form[0].value;
+function hello(event) {
+    console.log('Hello user');
 
-    alert(`Hello ${nameUser}`);
+    event.target.removeEventListener('click', hello);
+}
+
+for(let btn of btns) {
+    btn.addEventListener('click', hello);
 }
