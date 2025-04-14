@@ -1,18 +1,11 @@
-/*
-Задание
-При наведении на кнопку "Нет" - нужно её спрятать(display: 'none')
+const form = document.getElementById('name-form');
 
-*/
+form.addEventListener('submit', consoleForm);
 
-const noBtn = document.getElementById('buttonNo');
-
-function ghostBtn(event) {
-    // const btn = event.target;
-    // btn.style.display = 'none';
-
-    console.log('test');
+function consoleForm(event) {
+    event.preventDefault();
     
-    event.target.removeEventListener('mouseenter', ghostBtn);
-} 
-
-noBtn.addEventListener('mouseenter', ghostBtn);
+    const form = event.target;
+    const value = form[0].value;
+    console.log(value);
+}
