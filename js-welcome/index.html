@@ -3,26 +3,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        html, body {
-            height: 100%; 
-            margin: 0; 
-            background-color: rgba(0, 0, 0, 0.651);
-        }
-    </style>
 </head>
 <body>
-    <button>click me 1</button>
-    <button class="super-btn">click me 2</button>
-    <button id="btnbtn">click me 3</button>
+    <h1>Конвертёр валют</h1>
 
-    <article>
-        <p class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil libero recusandae harum odit rerum adipisci eos quod ea expedita corrupti.</p>
-        <p class="paragraph">Minus nulla quos hic officia ex sunt delectus at dignissimos provident quod, id possimus architecto tempora exercitationem tempore maiores praesentium.</p>
-        <p class="paragraph">Optio doloremque quo officiis, et autem aspernatur quam. Necessitatibus eos libero voluptate quia voluptates aliquid, iusto vel laboriosam quam repudiandae.</p>
-        <p class="paragraph">Illo, itaque non! Unde, earum sapiente hic molestiae illum necessitatibus veritatis voluptatem qui sit, voluptatum enim consectetur deleniti ipsam voluptates.</p>
-        <p class="paragraph">Beatae porro, suscipit maxime officiis consequuntur quidem magnam saepe deleniti natus numquam modi recusandae dolor similique, blanditiis incidunt explicabo ut?</p>
-    </article>
+    <form id="currency-converter-form">
+        <label>
+            Сумма конвертации:
+            <input type="number" id="amount" min="1" required/>
+        </label>
+
+        <label>
+            Выберите валюту:
+            <select id="currency" required>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+            </select>
+        </label>
+
+        <button type="submit">Конвертировать</button>
+
+        <div id="result"></div>
+    </form>
 
     <script src="./index.js"></script>
 </body>
