@@ -3,28 +3,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
 </head>
 <body>
-    <h1>Конвертёр валют</h1>
+    <h1>Конвертер из градусов Цельсия в Фариангейты</h1>
 
-    <form id="currency-converter-form">
+    <form id="converterForm">
         <label>
-            Сумма конвертации:
+            Введите градус Цельсия:
             <input type="number" id="amount" min="1" required/>
         </label>
-
-        <label>
-            Выберите валюту:
-            <select id="currency" required>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-            </select>
-        </label>
-
-        <button type="submit">Конвертировать</button>
-
-        <div id="result"></div>
+        <button id="button">Преаброзовать</button>
     </form>
+
+    <div id="result"></div>
 
     <script src="./index.js"></script>
 </body>
