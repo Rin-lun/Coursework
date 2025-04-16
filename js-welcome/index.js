@@ -1,26 +1,37 @@
 /*
 
-1. Имеем div
-2. имеем две кнопки: на одной написано «Сделать красным», на второй - «Сделать зеленым»
-3. По нажатию на кнопку, фоновый цвет div из п. 1 должен измениться на соответствующий цвет, указанный на кнопке
+HTML
+Создать кнопку, которая будет менять тему сайта 
+
+JS
+Когда мы нажимаем на эту кнопку - на сайте включается тёмный режим
+(для тега body установить backGroundColor = какой-то_цвет
+    color: white;
+)
+
+Если мы нажимаем на эту кнопку ещё раз - на сайте ВЫКЛЮЧАЕТСЯ тёмный режим
+(toogle)
 
 */
 
-const div = document.querySelector('#box');
+// Получаем элемент изображения по его ID
+const image = document.getElementById('changeImage');
 
-const [red, green] = document.querySelectorAll('.btn');
+// Массив изображений для смены
+const images = ['./moon-icon.png', './sun-icon.png'];
 
-red.addEventListener('click', redBtnHandler);
+// Индекс текущего изображения
+let currentIndex = 0;
 
-function redBtnHandler(event) {
-    // div.style.backgroundColor = 'red';
-    div.classList.toggle('bg-color-red');
+// Добавляем обработчик события на клик по картинке
+image.addEventListener('click', changeBackgroundAndImage);
 
+// Функция для смены фона и изображения
+function changeBackgroundAndImage(event) {
+    // Меняем цвет фона страницы
+    document.body.classList.toggle('bodyColor');
+    
+    currentIndex = (currentIndex + 1) % images.length; // Увеличиваем индекс и циклично его обновляем
+    image.src = images[currentIndex]; // Меняем картинку на основе текущего индекса
 }
 
-green.addEventListener('click', greenBtnHandler);
-
-function greenBtnHandler(event) {
-    // div.style.backgroundColor = 'green';
-    div.classList.toggle('bg-color-green');
-}

@@ -1,21 +1,8 @@
-/* html, body {
-    height: 100%; 
-    margin: 0; 
-    background-color: rgba(0, 0, 0, 0.651);
-} */
-
-
-#box {
-    width: 250px;
+img {
     height: 50px;
-    border: 1px solid black;
-    margin-bottom: 20px;
+    width: 50px;
 }
 
-.bg-color-red {
-    background-color: red;
-}
-
-.bg-color-green {
-    background-color: green;
+.bodyColor {
+    background-color: black;
 }
