@@ -1,0 +1,21 @@
+/* html, body {
+    height: 100%; 
+    margin: 0; 
+    background-color: rgba(0, 0, 0, 0.651);
+} */
+
+
+#box {
+    width: 250px;
+    height: 50px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
+
+.bg-color-red {
+    background-color: red;
+}
+
+.bg-color-green {
+    background-color: green;
+}
