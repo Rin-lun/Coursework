@@ -1,28 +1,21 @@
-
-// const event = new Event('click');
-// console.log(event.composedPath());
-
 const button = document.querySelector('button');
+const div = document.querySelector('#root');
 
-button.addEventListener('click', btnClickHandler);
-
-function btnClickHandler(event) {
-    console.log('hi from button click handler');
-    //console.log(event.composedPath());
-    //console.log(event.target); // той, на кому спрацювала подія
-    // target - елемент на якому сталася подія
-    // target - елемент, доя кого буде подія занурюватись
-    //console.log(event.currentTarget); // той, кому належить eventListener
-    // currentTarget - елемент, якому належав обробник події
+function eventHandlerButton(event) {
+    console.log(('hi from button handler'));
 }
 
-
-document.body.addEventListener('click', bodyClickHandler);
-
-function bodyClickHandler() {
-    console.log('hi from body click handler');
+const eventHandlerBody = (event) => {
+    console.log('Hi from body handler'); 
+    event.stopPropagation();
+    // target - тот, на котором сработало событие
+    // console.log(event.currentTarget); // тот, кому принадлежал обработчик события
+    console.log(this);
+    // Всередине  Function Declaration и Function Expression, this -> body
+    // Arrow Function, this -> Window
 }
 
-const clickEvent = new MouseEvent('click');
-
-// button.dispatchEvent(clickEvent);
+button.addEventListener('click', eventHandlerButton , {capture: true});
+// div.addEventListener('click', eventHandler, {capture: true, once: true});
+document.body.addEventListener('click', eventHandlerBody, {capture: true});
+// window.addEventListener('click', eventHandler, {capture: true, once: true});
