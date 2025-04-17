@@ -1,37 +1,36 @@
-/*
+// const event = new Event('click');
+// console.log(event.composedPath());
 
-HTML
-Создать кнопку, которая будет менять тему сайта 
+const button = document.querySelector('button')
 
-JS
-Когда мы нажимаем на эту кнопку - на сайте включается тёмный режим
-(для тега body установить backGroundColor = какой-то_цвет
-    color: white;
-)
+window.addEventListener('click', btnClickHandler);
 
-Если мы нажимаем на эту кнопку ещё раз - на сайте ВЫКЛЮЧАЕТСЯ тёмный режим
-(toogle)
-
-*/
-
-// Получаем элемент изображения по его ID
-const image = document.getElementById('changeImage');
-
-// Массив изображений для смены
-const images = ['./moon-icon.png', './sun-icon.png'];
-
-// Индекс текущего изображения
-let currentIndex = 0;
-
-// Добавляем обработчик события на клик по картинке
-image.addEventListener('click', changeBackgroundAndImage);
-
-// Функция для смены фона и изображения
-function changeBackgroundAndImage(event) {
-    // Меняем цвет фона страницы
-    document.body.classList.toggle('bodyColor');
-    
-    currentIndex = (currentIndex + 1) % images.length; // Увеличиваем индекс и циклично его обновляем
-    image.src = images[currentIndex]; // Меняем картинку на основе текущего индекса
+function btnClickHandler(event) {
+    //console.log(event.composedPath())
+    console.log(event.target); // тот, на ком сработало событие
+    // target - элемент на котором произошло событие
+    // target - элемент, к кому будет событие погружаться
+    console.log(event.currentTarget); // тот, кому принадлежит eventListener
+    // currentTarget - элемент, которому принадлежал обработчик события
 }
 
+const clickEvent = new MouseEvent('click');
+
+// button.dispatchEvent(clickEvent);
+
+
+/*
+3 фазы события:
+
+1. Фаза погружения.
+Событие происходит на уровне ОС, ОС передает событие браузеру (Window), тот передает событие document -> body -> ..... -> элемент, на котором произошло событие
+
+
+
+2. Фаза цели.
+Событие достигло элемента, элемент - это таргет
+
+3. Фаза всплытия.
+Событие начинает всплывать в обратном направлении, то есть от элемента (таргета) к ОС.
+
+*/
