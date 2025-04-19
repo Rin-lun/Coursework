@@ -2,7 +2,7 @@ body {
     background-color: rgba(19, 19, 20, 0.993);
 }
 
-#root {
-    border: 1px solid white;
-    padding: 10px
+img {
+    width: 200px;
+    height: 200px;
 }
