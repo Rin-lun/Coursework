@@ -12,15 +12,15 @@ field.addEventListener('click',  clickHandler, {capture: true});
 
 function clickHandler(event) {
     // если мы нажимаем не на игровое поле (то есть квадратик) - перемещение не происходит
-    // event.stopPropagation(); // это и есть фикс ошибки
+    event.stopPropagation(); // это и есть фикс ошибки
 
     //  target - на каком элементе произошло событие (на какой именно нажали)
     // cbrrentTarget - какому элементу принадлежал обработчик события
     if(event.currentTarget === event.target) { // если мы нажимаем на игровое поле - будет перемещение; это и есть фикс ошибки
         const {target: {children: {box}}, clientX, clientY} = event;
-    
-        box.style.top = `${clientY}px`;
-        box.style.left = `${clientX}px`;
+
+        box.style.top = `${clientY - (box.offsetHeight / 2)}px`;
+        box.style.left = `${clientX - (box.offsetWidth / 2)}px`;
     }
 
 }
