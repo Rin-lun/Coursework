@@ -2,6 +2,18 @@ body {
     background-color: rgba(19, 19, 20, 0.993);
 }
 
-.styleDiv {
-    color: blueviolet;
+#game-field {
+    background-color: rgb(98, 61, 199);
+    border: 1px solid grey;
+    height: 500px;
+    width: 500px;
+}
+
+#box {
+    height: 50px;
+    width: 50px;
+    background-color: rgb(34, 191, 202);
+    border: 2px solid black;
+    position: absolute;
+
 }

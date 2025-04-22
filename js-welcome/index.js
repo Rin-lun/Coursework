@@ -1,18 +1,26 @@
 /*
 
-Попробуйте создать несколько HTML элементов через JS. (document.createElement)
-Попробуйте добавить какие-то стилевые классы этим элементам. (element.classlist.add)
-Попробуйте добавить какой-то текстовый узел для элементов. ( element.append('text....') )
-Прицепите созданные элементы к body ( document.body.append(element) )
+Дан section, на который нужно клацать мышкой
+Дан div, который должен перместиться на точку, в которую клацнули мышкой
 
 */
 
-function clickHello() {
-    const div = document.createElement('div');
-    div.classList.add('styleDiv');
-    div.append('Hi!');
-    document.body.append(div);
-}
+const field = document.querySelector('#game-field');
+const box = document.querySelector('#box');
 
-const button = document.querySelector('button');
-button.addEventListener('click', clickHello);
+field.addEventListener('click',  clickHandler, {capture: true});
+
+function clickHandler(event) {
+    // если мы нажимаем не на игровое поле (то есть квадратик) - перемещение не происходит
+    // event.stopPropagation(); // это и есть фикс ошибки
+
+    //  target - на каком элементе произошло событие (на какой именно нажали)
+    // cbrrentTarget - какому элементу принадлежал обработчик события
+    if(event.currentTarget === event.target) { // если мы нажимаем на игровое поле - будет перемещение; это и есть фикс ошибки
+        const {target: {children: {box}}, clientX, clientY} = event;
+    
+        box.style.top = `${clientY}px`;
+        box.style.left = `${clientX}px`;
+    }
+
+}
