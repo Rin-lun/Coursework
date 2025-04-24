@@ -21,7 +21,7 @@ const data = [
         id: 4,
         name: 'Iness',
         description: 'Description for Iness',
-        profilePicture: 'https://pm1.aminoapps.com/6750/dddd7fbf857879e7a4513d20a85c1c89d5d74a41v2_hq.jpg'
+        profilePicture: 'TESThttps://pm1.aminoapps.com/6750/dddd7fbf857879e7a4513d20a85c1c89d5d74a41v2_hq.jpg'
     }, 
     {
         id: 5,
