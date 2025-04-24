@@ -11,33 +11,36 @@
 const root = document.querySelector('#root');
 
 function createUserCard(user) {
-    // 1. Создание article 
-    const article = document.createElement('article');
-    article.classList.add('card-wrapper');
-
-    // 2. Создание img
+    // 1. Создание img
     const img = document.createElement('img');
     img.setAttribute('src', user.profilePicture);
     img.setAttribute('alt', user.name);
     img.classList.add('card-image');
 
-    // 3. Создание h2
-    const h2 = document.createElement('h2');
-    h2.append(user.name);
-    h2.classList.add('username');
+    // 2. Создание h2
+    const h2 = createElement('h2', {classNames: ['username']}, user.name);
 
-    // 4. Создание p
-    const p = document.createElement('p');
-    p.append(user.description);
-    p.classList.add('description');
+    // 3. Создание p
+    const p = createElement('p', {classNames: ['description']}, user.description);
 
-    // 5. Присоеденить к article (п.1) элементы созданные в п.2-4 (img, h2, p)
-    article.append(img, h2, p);
-    
-    // 6. Возвращаем созданный article
-    return article;
+    // 4. Создаём и возвращаем созданный article, в который вложен созданные img, h2, p 
+    return createElement('article', {classNames: ['card-wrapper']}, img, h2, p);
 }
 
-const cardArray = data.map( user => createUserCard(user));
+const cardArray = data.map(user => createUserCard(user));
 
 root.append(...cardArray);
+
+/**
+ * @param {String} type - тег элемента, который нам нужно создать
+ * @param {String[]} classNames - список классов, которые нужно добавить к элементу
+ * @param  {...Node} childNodes - список дочерних узлов
+ * @returns {HTMLElement}
+ */
+function createElement(type, {classNames}, ...childNodes) {
+    const elem = document.createElement(type);
+    elem.classList.add(...classNames);
+    elem.append(...childNodes);
+
+    return elem;
+}
