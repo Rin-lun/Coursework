@@ -1,96 +1,54 @@
-/*
-<article class="card-wrapper">
-    <div class="image-wrapper">
-        <img class="card-image" src="https://pm1.aminoapps.com/6750/dddd7fbf857879e7a4513d20a85c1c89d5d74a41v2_hq.jpg" alt="John-avatar">
-    </div>
-    <h2>John</h2>
-    <p class="description">Description for John</p>
-</article>
-*/
+// Задача: создание простенькой TODO
 
-const root = document.querySelector('#root');
+// Базовый уровень
 
-function createUserCard(user) {
-    // 1. Создаём обёртку для картинки
-    const imgWrapper = createImageWrapper(user);
+// 1. Сделать инпут для ввода текста
+// 2. Сделать кнопку, которая по нажатию, текст из инпута превращает в элемент списка
 
-    // 2. Создание h2
-    const h2 = createElement('h2', {classNames: ['username']}, user.name);
+// <form>
+    // <input type="text" />
+    // <button>Click to add</button>
+// </form>
 
-    // 3. Создание p
-    const p = createElement('p', {classNames: ['description']}, user.description);
+// <ul>
+    // <li>Сделать что-то одно</li>
+    // <li>Сделать что-то другое</li>
+// </ul>
 
-    // 4. Создаём и возвращаем созданный article, в который вложен созданные img, h2, p 
-    return createElement('article', {classNames: ['card-wrapper']}, imgWrapper, h2, p);
-}
+// Продвинутый уровень
 
-const cardArray = data.map(user => createUserCard(user));
+// Задача: к каждому li присоединить кнопку, с помощью которой элемент из списка можно удалить
 
-root.append(...cardArray);
 
-/**
- * @param {String} type - тег элемента, который нам нужно создать
- * @param {String[]} classNames - список классов, которые нужно добавить к элементу
- * @param  {...Node} childNodes - список дочерних узлов
- * @returns {HTMLElement}
- */
-function createElement(type, {classNames}, ...childNodes) {
-    const elem = document.createElement(type);
-    elem.classList.add(...classNames);
-    elem.append(...childNodes);
+const input = document.querySelector('input');
+const div = document.querySelector('div');
+const ul = document.querySelector('ul');
+const but = document.querySelector('button');
 
-    return elem;
-}
+but.addEventListener('click', listItem);
 
-function imageLoadHandler({target}) {
-    const parentWrapper = document.querySelector(`#wrapper${target.dataset.id}`);
-    parentWrapper.append(target);
-}
+function listItem(event) {
+    event.preventDefault();
 
-function imageErrorHandler({target}) {
-    target.remove();
-}
+    if(input.value.length >= 3) {
+        const li = document.createElement('li');
+        li.textContent = input.value;
 
-function createUserImage(user) {
-    const img = document.createElement('img');
-    img.setAttribute('src', user.profilePicture);
-    img.setAttribute('alt', user.name);
-    img.dataset.id = user.id;
-    img.classList.add('card-image');
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('deleteButton')
 
-    img.addEventListener('load', imageLoadHandler);
-    img.addEventListener('error', imageErrorHandler);
-    
-    return img;
-}
+        li.append(deleteButton);
 
-function createImageWrapper(user) {
-    // 1. Создание заглушки
-    const imgWrapper =  createElement('div', {classNames: ['image-wrapper']});
-    imgWrapper.setAttribute('id', `wrapper${user.id}`);
+        deleteButton.addEventListener('click', function() {
+            li.remove(); 
+        });
 
-    // 2. Определяем backgound-color заглушки с расчётом имени пользователя
-    imgWrapper.style.backgroundColor = stringToColour(user.name); 
+        
+        ul.append(li);
 
-    // 3. Создание img
-    const img = createUserImage(user);
-
-    return imgWrapper;
-}
-
-function stringToColour(str) {
-    let hash = 0;
-
-    str.split('').forEach(char => {
-        hash = char.charCodeAt(0) + ((hash << 5) - hash);
-    })
-
-    let colour = '#';
-
-    for(let i = 0; i < 3; i++) {
-        const value = (hash >> (i * 8) & 0xff);
-        colour += value.toString(16).padStart(2, '0');
+        input.value = '';
+    } else {
+        throw new Error('Value not entered in form');
     }
-
-    return colour;
 }
