@@ -1,29 +1,3 @@
 body {
     background-color: rgba(54, 54, 114, 0.993);
 }
-
-h1 {
-    font-size: 50px;
-}
-
-div {
-    text-align: center;
-    border: 3px solid rgb(245, 179, 220);
-}
-
-li {
-    text-align: left; 
-    margin: 20px;
-    flex-direction: column;
-    /* right: 100px; */
-}
-
-#buttonSend {
-    margin-left: 20px;
-}
-
-.deleteButton {
-    position: fixed;  /* Фиксируем элемент относительно окна */
-    right: 100px;  /* Расстояние от правой стороны экрана */
-    margin-right: 10px ;
-}

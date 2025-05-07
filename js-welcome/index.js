@@ -1,54 +1,44 @@
-// Задача: создание простенькой TODO
+/*
 
-// Базовый уровень
+Регулярные выражения - своеродный фильтр для текстовых данных
 
-// 1. Сделать инпут для ввода текста
-// 2. Сделать кнопку, которая по нажатию, текст из инпута превращает в элемент списка
+Регулярные выражения = инструмент сравнения какого-то ряда с заданным шаблоном
 
-// <form>
-    // <input type="text" />
-    // <button>Click to add</button>
-// </form>
+С помощью регулярки мы описываем, как должен выглядеть ряд, который мы ожидаем от пользователя
 
-// <ul>
-    // <li>Сделать что-то одно</li>
-    // <li>Сделать что-то другое</li>
-// </ul>
+^ - начало рядка
+$ - конец рядка
+[] - последовательность символов
+[a-z] - диапазон
+[a-zA-Z] - два диапазона вручную
+[agckru] - пересчитать вручную
 
-// Продвинутый уровень
+/^[a-zA-Z] {2,5}/          // ищем слово с 2-5 букв (больших или маленьких) 
+/^[a-zA-Z]{2,}[0-9]+$/     // ищем слово любой длины больше двух букв в конце должна быть минимум 1 цифра
+/^[a-zA-Z]{2,}[0-9]+\.$/   // ищем слово любой длины больше двух букв в конце должна быть минимум 1 цифра и после цифры должна быть точка
 
-// Задача: к каждому li присоединить кнопку, с помощью которой элемент из списка можно удалить
+*/
 
+// const regexp = /^Text$/;
 
-const input = document.querySelector('input');
-const div = document.querySelector('div');
-const ul = document.querySelector('ul');
-const but = document.querySelector('button');
+const str1 = 'hello';
+const str2 = new String('hello');
 
-but.addEventListener('click', listItem);
+// Regexp
 
-function listItem(event) {
-    event.preventDefault();
+const reg1 = /^[a-zA-Z] {2,5}$/;
 
-    if(input.value.length >= 3) {
-        const li = document.createElement('li');
-        li.textContent = input.value;
+const reg2 = new RegExp('^[a-zA-Z] {2,5}$');
 
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.classList.add('deleteButton')
+// Экспереметируем: валидируем email через регулярки 
 
-        li.append(deleteButton);
+const testString = 'sunday56@gmaail.com';
+const emailRegExp = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
 
-        deleteButton.addEventListener('click', function() {
-            li.remove(); 
-        });
+emailRegExp.exec(testString); // array
+emailRegExp.test(testString); //true
 
-        
-        ul.append(li);
+testString.match(emailRegExp); // array -- сработает как exec
 
-        input.value = '';
-    } else {
-        throw new Error('Value not entered in form');
-    }
-}
+let str = 'Blue SKY';
+console.log(str.replace(new RegExp('[A-Z]{3}'), 'test123')); // Blue test123
