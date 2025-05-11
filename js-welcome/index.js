@@ -1,8 +1,28 @@
+// timeout - выполняет функцию один раз после какой-то задержки
+// interval - выполняет функцию много раз с какай-то задержкой 
+
+// const intervalID = setInterval(() => {
+//     console.log('Logging');
+// }, 2000);
+
 /*
 
-Напишите функцию, которая будет приветствовать юзера alert('Hello user!')
-Приветствовать функция должна юзера не сразу, а только через 8 секунд, после того, как страница загрузится
+Написать функцию, которая через каждую секунду выводить числа в консоль от 1 до 10
+Выполнить эту задачу через интервалы
 
 */
 
-const helloUser = setTimeout(() => alert('Hello user!'), 8000);
+function counter() {
+    let i = 1;
+    const intervalID = setInterval(() => {
+        console.log(i++);
+        if (i > 10) {
+            clearInterval(intervalID); 
+            console.timeEnd('1');
+        }
+    }, 1000);
+}
+
+console.time('1');
+counter();
+
