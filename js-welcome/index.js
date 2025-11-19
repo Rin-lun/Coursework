@@ -8,6 +8,6 @@ function executor(resolve, reject) {
 
 const h1 = document.querySelector('#root');
 
-p.then((data) => {
+p.then((str) => {
     h1.append(str);
 });
