@@ -11,17 +11,24 @@ function loadImage(src) {
 
     // 3. Возвращаем промис
     return new Promise((resolve, reject) => {
+        //  Создаём таймаут на 5 секунд для  загрузки картинки
+        const timeoutId = setTimeout(() => {
+            reject('Image can`t be loaded');
+        }, 5000);
+
         //  Подписываем созданную картинку на событие load
         // Если картинка загружается - мы резолвим промис с элеменетом картинки
         img.addEventListener('load', () => {
+            clearTimeout(timeoutId);
             resolve(img);
         });
 
         // Подписываем созданную картинку на событие error
         // Если картинка не загружается - мы реджектем с уведомлением про ошибку
         img.addEventListener('error', () => {
+            clearTimeout(timeoutId);
             reject('Image can`t be loaded');
-        })
+        });
     });
 }
 
