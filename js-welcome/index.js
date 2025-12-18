@@ -1,46 +1,79 @@
-function loadImage(src) {
-    // 1. Создаём картинку
-    const img = document.createElement('img');
-    img.setAttribute('src', src);
+/*
 
-    // 2. Создаём элемент в вёрстке, который будет служить нам для того, чтобы указывать, загружаем мы что-то или нет
-    const h2 = document.createElement('h2');
-    h2.id = 'loading-h2';
-    h2.append('Loading image...');
-    document.body.append(h2);
+https://api.openweathermap.org/data/2.5/weather?q=Dnipro&appid=f7c576ba3699bdd0b98ddcf196639992units=metric
 
-    // 3. Возвращаем промис
-    return new Promise((resolve, reject) => {
-        //  Создаём таймаут на 5 секунд для  загрузки картинки
-        const timeoutId = setTimeout(() => {
-            reject('Image can`t be loaded');
-        }, 5000);
+f7c576ba3699bdd0b98ddcf196639992
 
-        //  Подписываем созданную картинку на событие load
-        // Если картинка загружается - мы резолвим промис с элеменетом картинки
-        img.addEventListener('load', () => {
-            clearTimeout(timeoutId);
-            resolve(img);
-        });
+// Задача: сделать погодный виджет
 
-        // Подписываем созданную картинку на событие error
-        // Если картинка не загружается - мы реджектем с уведомлением про ошибку
-        img.addEventListener('error', () => {
-            clearTimeout(timeoutId);
-            reject('Image can`t be loaded');
-        });
+Алгоритм решения:
+1. Сделать вёрстку элементов данных, которые мы будем получать от пользователя про город;
+2. Получить данные с api и обработать их (подготовить данные для отрисования в вёрстке);
+3. Сделать картку с погодой и отобразить её.
+
+*/
+
+const API_BASE = 'https://api.openweathermap.org/data/2.5/weather';
+const API_KEY = 'f7c576ba3699bdd0b98ddcf196639992';
+
+const btn = document.querySelector('.btn');
+
+btn.addEventListener('click', buttonClickHandler);
+
+function buttonClickHandler({target}) {
+    const selectValue = target.previousElementSibling.value;
+    requestAPI(selectValue);
+}
+
+
+function requestAPI (cityName) {
+    // 1. Готовим URL
+    const url = `${API_BASE}?q=${cityName}&appid=${API_KEY}&units=metric`;
+    
+    // 2. Делаем запрос
+    fetch(url)
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        // 3. Отрисовываем погоду
+        displayWeather(data);
     });
 }
 
-loadImage('https://kor.ill.in.ua/m/610x385/2722809.jpg')
-.then((img) => {
-    document.body.append(img);
-}, (errorMessage) => {
-    const h2 = document.createElement('h2');
-    h2.append(errorMessage);
-    document.body.append(h2);
-})
-.finally(() => {
-    const loadingH2 = document.querySelector('#loading-h2');
-    loadingH2.remove();
-});
+/*
+
+<article class="weather">
+    <p>City name: Kyiv</p>
+    <p>Temperature: 7°C</p>
+    <p>Weather description: overcast clouds</p>
+</article>
+
+*/
+
+function displayWeather(weatherObject) {
+    const {name, main: {temp}, weather: [{description}]} = weatherObject;
+
+    // 1. Создаём article 
+    const article = document.createElement('article');
+    article.classList.add('weather');
+    
+    // 2. Создаём параграф с названием города
+    const cityName = document.createElement('p');
+    cityName.append(`City name: ${name}`);
+
+    // 3. Создаём параграф с температурой
+    const temperature = document.createElement('p');
+    temperature.append(`Temperature: ${temp}°C`);
+
+    // 4. Создаём параграф с описанием погоды
+    const weatherDescription = document.createElement('p');
+    weatherDescription.append(`Weather description: ${description}`);
+
+    // 5. К article добавлем параграфы, созданные в п.[2-4]
+    article.append(cityName, temperature, weatherDescription);
+
+    // 6. Находим section и добавляем к нему article
+    const section = document.querySelector('.wrapper');
+    section.append(article);
+}
